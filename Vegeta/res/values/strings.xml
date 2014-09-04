@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vegeta</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">VEGETA\nAPP</string>
+    <string name="saludo">Bienvenido a nuestro prototipo</string>
+    <string name="Boton1">Ingredientes</string>
+    <string name="Boton2">Receta</string>
+    <string name="Boton3">Scanear</string>
+    <string name="sig">Siguiente</string>
+    <string name="treceta">Receta</string>
+    <string name="receta">Descripcion</string>
+    <string name="autor">Creador</string>
+    <string name="Boton5">Ver Recetas</string>
+    <string name="Boton6">Nueva Receta</string>
+    <string name="Boton7">Mis Recetas</string>
+    <string name="botonborrar">Eliminar</string>
+    <string name="ver">Ver</string>
+    <string name="botonmodificar">Modificar</string>
+    <string name="agregar">Agregar Receta</string>
+    <string name="selecc">Seleccione los ingredientes</string>
+    <string name="New_ingred">Publicar Ingrediente</string>
+    <string name="Buscar_ingred">Buscar Ingrediente</string>
+    <string name="Mod_ingred">Modificar Ingrediente</string>
+    <string name="Agregar_ingred">Agregar Ingrediente</string>
+    <string name="Obtener_imagen">Obtener</string>
+    <string name="Error">Error al cargar</string>
+    <string name="Error1">Sin conexión de red</string>
+    <string name="concejo">Toca para volver a intentarlo</string>
+    <string name="vacio"></string>
+    <string name="ingrediente">Ingrediente</string>
+    <string name="unidad">Unidad</string>
+    <string name="busqueda1">Buscar</string>
+     <string name="busqueda">Ingrese el nombre del ingrediente</string>
+    
+  
+</resources>

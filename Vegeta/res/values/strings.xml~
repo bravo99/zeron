@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vegeta</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">VEGETA\nAPP</string>
+    <string name="saludo">Bienvenido a nuestro prototipo</string>
+    <string name="cambio">nuevo cambio</string>
+    <string name="cambio2">nuevo cambio2</string>
+    <string name="cambio3">nuevo cambio33333</string>
+    <string name="cambio4">nuevo cambioasdf</string>
+
+</resources>

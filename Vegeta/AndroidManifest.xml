@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.vegeta"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name">
+        <!--  android:theme="@style/AppTheme" --> 
+        <activity android:name="com.example.vegeta.FullscreenActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:label="@string/app_name" android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.vegeta.Form"></activity>
+        <activity android:name="com.example.vegeta.Imagen"></activity>
+        <activity android:name="com.example.vegeta.Result"></activity>
+        <activity android:name="com.example.vegeta.Recetas"></activity>
+        <activity android:name="com.example.vegeta.Ver"></activity>
+        <activity android:name="com.example.vegeta.MisRecetas"></activity>
+        
+        <activity android:name="com.example.vegeta.Ingred"></activity><activity android:name="com.example.vegeta.Result1"></activity>
+        <activity android:name="com.example.vegeta.Modificar"></activity>
+        <activity android:name="com.example.vegeta.Ingrediente"></activity>
+        <activity android:name="com.example.vegeta.FormIngrediente"></activity><activity android:name="com.example.vegeta.Error"></activity>
+        <activity android:name="com.example.vegeta.MisIngredientes"></activity>
+        <activity android:name="com.example.vegeta.ResultIngrediente1"></activity>
+        <activity android:name="com.example.vegeta.ModificarIngrediente"></activity>
+        <activity android:name="com.example.vegeta.ResultIngrediente"></activity>
+        <activity android:name="com.example.vegeta.Buscar"></activity>
+        <activity android:name="com.example.vegeta.Resbusqueda"></activity>
+        
+        
+    </application>
+
+</manifest>
