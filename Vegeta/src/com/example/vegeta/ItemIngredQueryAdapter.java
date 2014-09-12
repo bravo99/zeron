@@ -2,11 +2,11 @@ package com.example.vegeta;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +24,6 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 	protected Activity activity;
 	protected ArrayList<ParseObject> items;
 	String[] info;
-	byte[] val;
-	String [] arregloim;
 	public final static String ACT_INFO = "com.example.vegeta.Result1Ingrediente";
 	
 	public ItemIngredQueryAdapter(Activity activity , ArrayList<ParseObject> items) {
@@ -52,7 +50,7 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 		return 0;
 	}
 
-	@Override
+	@SuppressLint("InflateParams") @Override
 	public View getView(final int position, View contentView, ViewGroup parent) {
 		
 		View vi=contentView;
@@ -71,7 +69,7 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 	    @Override	
 	      public void done(byte[] data, ParseException e) {
 	        if (e == null) {
-	        	val = data;
+	        	
 	          imagenview.setImageBitmap(BitmapFactory.decodeByteArray(data,0,data.length));
 	        } else {
 	          // something went wrong
@@ -106,7 +104,7 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 				info[3]=obj.getString("uniIngrediente");
 				
 				
-				lanzar(val);
+				lanzar(info);
 				
 			}
 
@@ -120,12 +118,10 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 	    //obj.deleteInBackground();
 	  }
 
-	private void lanzar(byte[] arg) {
+	private void lanzar(String[] algo) {
 		
 		Intent a = new Intent(activity,ResultIngrediente1.class );
-		//a.putExtra(ACT_INFO, algo);
-		a.putExtra(ACT_INFO, arg);
-		//a.putExtra(ACT_INFO, value);
+		a.putExtra(ACT_INFO, algo);
 		
 		activity.startActivity(a);
 		
