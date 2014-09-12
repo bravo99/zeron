@@ -28,6 +28,7 @@ public class Error extends Activity {
         case (MotionEvent.ACTION_DOWN):
         	Intent i = new Intent(this, FullscreenActivity.class);
         	startActivity(i);
+        	this.finish();
             Log.d(DEBUG_TAG, "La accion ha sido ABAJO");
             return true;
         case (MotionEvent.ACTION_MOVE):

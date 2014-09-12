@@ -29,15 +29,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fondo=0x7f020000;
         public static final int fondo2=0x7f020001;
         public static final int fondoerror=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int ic_launcher2=0x7f020004;
-        public static final int image_0=0x7f020005;
-        public static final int image_1=0x7f020006;
-        public static final int image_2=0x7f020007;
-        public static final int image_3=0x7f020008;
-        public static final int image_4=0x7f020009;
-        public static final int image_5=0x7f02000a;
-        public static final int logo=0x7f02000b;
+        public static final int ic_action_action_search=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int ic_launcher2=0x7f020005;
+        public static final int image_0=0x7f020006;
+        public static final int image_1=0x7f020007;
+        public static final int image_2=0x7f020008;
+        public static final int image_3=0x7f020009;
+        public static final int image_4=0x7f02000a;
+        public static final int image_5=0x7f02000b;
+        public static final int logo=0x7f02000c;
     }
     public static final class id {
         public static final int autoCompleteTextView1=0x7f080006;
@@ -67,8 +68,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fullscreen_content_controls=0x7f080001;
         public static final int imageView1=0x7f080005;
         public static final int imgView=0x7f080015;
+        public static final int imresult1=0x7f080030;
         public static final int linearLayout1=0x7f080017;
-        public static final int listView1=0x7f080030;
+        public static final int listView1=0x7f080031;
         public static final int listv2=0x7f08001d;
         public static final int lvi1=0x7f080018;
         public static final int r1=0x7f080026;

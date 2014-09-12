@@ -239,7 +239,13 @@ public class FormIngrediente extends Activity implements OnClickListener{
 			info[2]="Form";
 			info[3] = name;
 			
-			ingrediente.put("nombre", nIngrediente.getText().toString().toLowerCase());
+			String pos_0= info[0].substring(0, 1).toUpperCase();
+			System.out.println(pos_0);
+			String pos_1_n = info[0].substring(1, info[0].length()).toLowerCase();
+			System.out.println(pos_1_n);
+            info[0]= pos_0.concat(pos_1_n);			
+            
+			ingrediente.put("nombre", info[0]);
 			ingrediente.put("descripcion", descripcion.getText().toString() );
 			ingrediente.put("uniIngrediente", unidad.getSelectedItem().toString());
 			ingrediente.put("imagen",imageFile);

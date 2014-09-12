@@ -1,19 +1,15 @@
 package com.example.vegeta;
 import java.util.List;
 
-import com.example.vegeta.FormIngrediente;
 import com.example.vegeta.ItemIngredQueryAdapter;
-import com.example.vegeta.ItemQueryAdaptermr;
-import com.example.vegeta.MisRecetas;
-import com.example.vegeta.Modificar;
 import com.example.vegeta.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -30,11 +26,12 @@ public class ResultIngrediente1 extends Activity{
 	
 	TextView resultado1;
     TextView resultado2;
-    TextView resultado3;
+    ImageView resultado3;
    
     Button bt1;
     Button bt2;
     String[] info,inf1;
+    byte[] ima;
     String objid;
     final static String ACT_INFO = "com.example.vegeta.ModificarIngrediente";
     final static String ACT_INFO1= "com.example.vegeta.Ingrediente";
@@ -49,18 +46,23 @@ public class ResultIngrediente1 extends Activity{
 		setContentView(R.layout.resultingrediente1);
 		init();
 	}
+	@SuppressLint("ShowToast")
 	public void init(){
 		toast1 =  Toast.makeText(getApplicationContext(),"Eliminando Ingrediente...", Toast.LENGTH_SHORT);
 		resultado1= (TextView)findViewById(R.id.textView2);
 		resultado2= (TextView)findViewById(R.id.textView4);
+		resultado3 = (ImageView)findViewById(R.id.imresult1);
 				
 		bt1 = (Button)findViewById(R.id.button2) ;
 		bt2 = (Button)findViewById(R.id.button1) ;
-		Intent men = getIntent();
-		info = men.getStringArrayExtra(ItemIngredQueryAdapter.ACT_INFO);
 		
-		resultado1.setText(info[0]);
-		resultado2.setText(info[1]);
+		Intent men = getIntent();
+		//info = men.getStringArrayExtra(ItemIngredQueryAdapter.ACT_INFO);
+		ima = men.getByteArrayExtra(ItemIngredQueryAdapter.ACT_INFO);
+		
+		//resultado1.setText(info[0]);
+		//resultado2.setText(info[1]);
+		resultado3.setImageBitmap(BitmapFactory.decodeByteArray(ima, 0, ima.length));
 				
 		bt2.setOnClickListener(new OnClickListener() {
 			

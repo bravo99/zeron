@@ -11,7 +11,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="124dp"
-        android:text="@string/busqueda1" />
+        android:background="@drawable/ic_action_action_search"
+        />
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView1"
