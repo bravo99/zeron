@@ -1,12 +1,20 @@
 package com.example.vegeta;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +31,21 @@ import com.parse.ParseObject;
 public class ItemIngredQueryAdapter extends BaseAdapter{
 	protected Activity activity;
 	protected ArrayList<ParseObject> items;
+	Context ct;
 	String[] info;
-	public final static String ACT_INFO = "com.example.vegeta.Result1Ingrediente";
 	
-	public ItemIngredQueryAdapter(Activity activity , ArrayList<ParseObject> items) {
+	byte[] img;
+	public final static String ACT_INFO = "com.example.vegeta.Result1Ingrediente";
+	private static final String Imagenes = "Imagenes";
+	
+	public ItemIngredQueryAdapter(Activity activity , ArrayList<ParseObject> items, Context context) {
 	    //this.pso = findCallback;
 	    this.activity= activity;
 	    this.items = items;
+	        
+	    this.ct = context;
+	    
+	   
 	    
 	    
 	    
@@ -50,6 +66,7 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 		return 0;
 	}
 
+	
 	@SuppressLint("InflateParams") @Override
 	public View getView(final int position, View contentView, ViewGroup parent) {
 		
@@ -69,18 +86,17 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 	    @Override	
 	      public void done(byte[] data, ParseException e) {
 	        if (e == null) {
-	        	
+	         
 	          imagenview.setImageBitmap(BitmapFactory.decodeByteArray(data,0,data.length));
+	         
 	        } else {
-	          // something went wrong
+	          //poner imagen por defecto
 	        }
 	      }
 
 		
 	    });
-	    
-	    
-	    
+	   
 	   	         
 	    TextView nombre = (TextView) vi.findViewById(R.id.tv_ingred_ver);
 	    nombre.setText(item.getString("nombre"));
@@ -95,6 +111,9 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
+				Drawable drawable = imagenview.getDrawable();
+				Bitmap bitmap = (Bitmap)((BitmapDrawable) drawable).getBitmap();
+				
 				int potition = position;
 				ParseObject obj = items.get(potition);
 				info = new String[5];
@@ -103,11 +122,14 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 				info[2]=obj.getObjectId();
 				info[3]=obj.getString("uniIngrediente");
 				
-				
+				String ruta = guardarImagen( ct, "imagen", bitmap);
+				System.out.println(ruta); 
+			    info[4]=ruta;				
 				lanzar(info);
 				
 			}
 
+			
 			
 
 				 
@@ -118,6 +140,25 @@ public class ItemIngredQueryAdapter extends BaseAdapter{
 	    //obj.deleteInBackground();
 	  }
 
+	private String guardarImagen (Context context, String nombre, Bitmap imagen){
+	    ContextWrapper cw = new ContextWrapper(context);
+	    File dirImages = cw.getDir(Imagenes, Context.MODE_PRIVATE);
+	    
+		File myPath = new File(dirImages, nombre + ".png");
+	     
+	    FileOutputStream fos = null;
+	    try{
+	        fos = new FileOutputStream(myPath);
+	        imagen.compress(Bitmap.CompressFormat.JPEG, 10, fos);
+	        fos.flush();
+	    }catch (FileNotFoundException ex){
+	        ex.printStackTrace();
+	    }catch (IOException ex){
+	        ex.printStackTrace();
+	    }
+	    return myPath.getAbsolutePath();
+	}
+	
 	private void lanzar(String[] algo) {
 		
 		Intent a = new Intent(activity,ResultIngrediente1.class );

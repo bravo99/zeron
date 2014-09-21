@@ -17,7 +17,12 @@ import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
-
+/***
+ * 
+ * @author benja
+ * Buscar
+ *
+ */
 public class Buscar extends Activity{
 	
 	AutoCompleteTextView tvac;

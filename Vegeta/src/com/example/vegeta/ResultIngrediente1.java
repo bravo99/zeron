@@ -1,4 +1,5 @@
 package com.example.vegeta;
+import java.io.File;
 import java.util.List;
 
 import com.example.vegeta.ItemIngredQueryAdapter;
@@ -11,6 +12,7 @@ import com.parse.ParseQuery;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +33,6 @@ public class ResultIngrediente1 extends Activity{
     Button bt1;
     Button bt2;
     String[] info,inf1;
-    byte[] ima;
     String objid;
     final static String ACT_INFO = "com.example.vegeta.ModificarIngrediente";
     final static String ACT_INFO1= "com.example.vegeta.Ingrediente";
@@ -56,13 +57,25 @@ public class ResultIngrediente1 extends Activity{
 		bt1 = (Button)findViewById(R.id.button2) ;
 		bt2 = (Button)findViewById(R.id.button1) ;
 		
-		Intent men = getIntent();
-		//info = men.getStringArrayExtra(ItemIngredQueryAdapter.ACT_INFO);
-		ima = men.getByteArrayExtra(ItemIngredQueryAdapter.ACT_INFO);
 		
-		//resultado1.setText(info[0]);
-		//resultado2.setText(info[1]);
-		resultado3.setImageBitmap(BitmapFactory.decodeByteArray(ima, 0, ima.length));
+		Intent men = getIntent();
+		info = men.getStringArrayExtra(ItemIngredQueryAdapter.ACT_INFO);
+		
+		resultado1.setText(info[0]);
+		resultado2.setText(info[1]);
+		
+		File imgFile = new  File(info[4]);
+		if(imgFile.exists()){
+
+		    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+		    
+		    resultado3.setImageBitmap(myBitmap);
+
+		}
+		
+		
+		
 				
 		bt2.setOnClickListener(new OnClickListener() {
 			

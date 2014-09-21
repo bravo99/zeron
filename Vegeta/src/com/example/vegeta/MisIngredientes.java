@@ -50,7 +50,7 @@ public void init(final Context ct){
 						posts.add(post);
 					}
 										
-					ItemIngredQueryAdapter adapter = new ItemIngredQueryAdapter((Activity) ct,posts);
+					ItemIngredQueryAdapter adapter = new ItemIngredQueryAdapter((Activity) ct,posts,(Context)ct);
 					lv2.setAdapter(adapter);
 		            
 		        } else {
