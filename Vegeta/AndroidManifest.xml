@@ -36,6 +36,7 @@
         <activity android:name="com.example.vegeta.ResultIngrediente"></activity>
         <activity android:name="com.example.vegeta.Buscar"></activity>
         <activity android:name="com.example.vegeta.Resbusqueda"></activity>
+        <activity android:name="com.example.vegeta.ResultRecetaActivity"></activity>
         
         
     </application>

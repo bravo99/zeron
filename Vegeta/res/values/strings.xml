@@ -32,7 +32,8 @@
     <string name="ingrediente">Ingrediente</string>
     <string name="unidad">Unidad</string>
     <string name="busqueda1">Buscar</string>
-     <string name="busqueda">Ingrese el nombre del ingrediente</string>
+    <string name="busqueda">Ingrese el nombre del ingrediente</string>
+    <string name="preparacion">Preparacion</string>
     
   
 </resources>

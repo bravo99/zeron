@@ -188,7 +188,7 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 		switch (id){
 		
 		 	case R.id.button2: //lanzar formulario
-		 		i = new  Intent(this,Recetas.class);
+		 		i = new  Intent(this,Recetas.class);//Recetas
 		 		startActivity(i);
 		 		break;
 			case R.id.button3:

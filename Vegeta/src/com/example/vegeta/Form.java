@@ -20,7 +20,7 @@ public class Form extends Activity implements OnClickListener{
 	String[] info;
 	Toast toast1; 
 	ArrayList<ParseObject> posts;
-	final static String ACT_INFO = "com.example.vegeta.Result";
+	final static String ACT_INFO = "com.example.vegeta.ResultRecetaAtivity";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -67,7 +67,7 @@ public class Form extends Activity implements OnClickListener{
 			receta.saveInBackground();
 			
 			
-			a = new Intent(this, Result.class);
+			a = new Intent(this, ResultRecetaActivity.class);
 			a.putExtra(ACT_INFO, info);
 			startActivity(a);
 		}	

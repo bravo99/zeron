@@ -307,9 +307,10 @@ int id image 0x7f050027
 int id imageView1 0x7f050041
 int id imgView 0x7f050051
 int id imresult1 0x7f05006c
+int id ivimareceta 0x7f05006e
 int id linearLayout1 0x7f050053
 int id listMode 0x7f050001
-int id listView1 0x7f05006d
+int id listView1 0x7f050073
 int id list_item 0x7f050029
 int id listv2 0x7f050059
 int id lvi1 0x7f050054
@@ -342,6 +343,9 @@ int id spinner1 0x7f05004e
 int id spinner2 0x7f05004f
 int id split_action_bar 0x7f05001e
 int id submit_area 0x7f050039
+int id tab1 0x7f05006f
+int id tab2 0x7f050070
+int id tab3 0x7f050071
 int id tabMode 0x7f050002
 int id textView1 0x7f050043
 int id textView2 0x7f050044
@@ -354,9 +358,11 @@ int id tv_ingred_ver 0x7f050056
 int id tv_nombreingred 0x7f050046
 int id tvm1 0x7f05005b
 int id tvnombrereceta 0x7f050057
+int id tvpreparacion 0x7f050072
 int id tvr1 0x7f050066
 int id tvr2 0x7f050068
 int id tvr3 0x7f050069
+int id tvtit 0x7f05006d
 int id up 0x7f050021
 int id useLogo 0x7f050003
 int id withText 0x7f05000c
@@ -402,8 +408,9 @@ int layout result 0x7f030025
 int layout result1 0x7f030026
 int layout resultingrediente 0x7f030027
 int layout resultingrediente1 0x7f030028
-int layout support_simple_spinner_dropdown_item 0x7f030029
-int layout ver 0x7f03002a
+int layout resultreceta 0x7f030029
+int layout support_simple_spinner_dropdown_item 0x7f03002a
+int layout ver 0x7f03002b
 int string Agregar_ingred 0x7f0a0023
 int string Boton1 0x7f0a0011
 int string Boton2 0x7f0a0012
@@ -441,6 +448,7 @@ int string concejo 0x7f0a0027
 int string dummy_button 0x7f0a000e
 int string dummy_content 0x7f0a000f
 int string ingrediente 0x7f0a0029
+int string preparacion 0x7f0a002d
 int string receta 0x7f0a0016
 int string saludo 0x7f0a0010
 int string selecc 0x7f0a001f

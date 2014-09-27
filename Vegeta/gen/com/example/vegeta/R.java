@@ -1151,9 +1151,10 @@ containing a value of this type.
         public static final int imageView1=0x7f050041;
         public static final int imgView=0x7f050051;
         public static final int imresult1=0x7f05006c;
+        public static final int ivimareceta=0x7f05006e;
         public static final int linearLayout1=0x7f050053;
         public static final int listMode=0x7f050001;
-        public static final int listView1=0x7f05006d;
+        public static final int listView1=0x7f050073;
         public static final int list_item=0x7f050029;
         public static final int listv2=0x7f050059;
         public static final int lvi1=0x7f050054;
@@ -1186,6 +1187,9 @@ containing a value of this type.
         public static final int spinner2=0x7f05004f;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
+        public static final int tab1=0x7f05006f;
+        public static final int tab2=0x7f050070;
+        public static final int tab3=0x7f050071;
         public static final int tabMode=0x7f050002;
         public static final int textView1=0x7f050043;
         public static final int textView2=0x7f050044;
@@ -1198,9 +1202,11 @@ containing a value of this type.
         public static final int tv_nombreingred=0x7f050046;
         public static final int tvm1=0x7f05005b;
         public static final int tvnombrereceta=0x7f050057;
+        public static final int tvpreparacion=0x7f050072;
         public static final int tvr1=0x7f050066;
         public static final int tvr2=0x7f050068;
         public static final int tvr3=0x7f050069;
+        public static final int tvtit=0x7f05006d;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1272,8 +1278,9 @@ containing a value of this type.
         public static final int result1=0x7f030026;
         public static final int resultingrediente=0x7f030027;
         public static final int resultingrediente1=0x7f030028;
-        public static final int support_simple_spinner_dropdown_item=0x7f030029;
-        public static final int ver=0x7f03002a;
+        public static final int resultreceta=0x7f030029;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
+        public static final int ver=0x7f03002b;
     }
     public static final class string {
         public static final int Agregar_ingred=0x7f0a0023;
@@ -1340,6 +1347,7 @@ containing a value of this type.
         public static final int dummy_button=0x7f0a000e;
         public static final int dummy_content=0x7f0a000f;
         public static final int ingrediente=0x7f0a0029;
+        public static final int preparacion=0x7f0a002d;
         public static final int receta=0x7f0a0016;
         public static final int saludo=0x7f0a0010;
         public static final int selecc=0x7f0a001f;
