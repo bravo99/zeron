@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Vegeta</string>
+    <string name="app_name">Feeling</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">VEGETA\nAPP</string>
     <string name="saludo">Bienvenido a nuestro prototipo</string>
