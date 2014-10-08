@@ -251,6 +251,7 @@ import android.widget.Toast;
 	            public void onClick(View view)
 	            {
 	            	dialogMarker.dismiss();
+	            	Toast.makeText(MainActivity.this, "holi shet", Toast.LENGTH_SHORT).show();
 	                 
 	            }
 	        });
