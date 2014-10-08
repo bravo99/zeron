@@ -251,7 +251,6 @@ import android.widget.Toast;
 	            public void onClick(View view)
 	            {
 	            	dialogMarker.dismiss();
-	                Toast.makeText(MainActivity.this, 1 ,Toast.LENGTH_SHORT).show();
 	                 
 	            }
 	        });
