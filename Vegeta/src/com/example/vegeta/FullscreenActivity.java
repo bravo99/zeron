@@ -11,13 +11,13 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.parse.Parse;
 
 
@@ -179,6 +179,7 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 		btn2.setOnClickListener(this);
 		btn1 = (Button)findViewById(R.id.button1);
 		btn1.setOnClickListener(this);
+			
 	}
 	
 	@Override
@@ -192,8 +193,8 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 		 		startActivity(i);
 		 		break;
 			case R.id.button3:
-				i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(i,cons);
+				i = new Intent(this,MainActivity.class);
+				startActivity(i);
 				break;
 			case R.id.button1:
 				i = new  Intent(this,Ingrediente.class);
