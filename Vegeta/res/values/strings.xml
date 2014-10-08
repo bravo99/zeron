@@ -34,6 +34,10 @@
     <string name="busqueda1">Buscar</string>
     <string name="busqueda">Ingrese el nombre del ingrediente</string>
     <string name="preparacion">Preparacion</string>
+    <string name="tiempo">Tiempo Preparación</string>
+    <string name="categoria">Categoria</string>
+    <string name="HINTReceta">"Nombre de la Receta"</string>
+    <string name="HINTprep">Agregue preparación</string>
     
   
 </resources>

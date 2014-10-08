@@ -24,19 +24,22 @@
         <activity android:name="com.example.vegeta.Result"></activity>
         <activity android:name="com.example.vegeta.Recetas"></activity>
         <activity android:name="com.example.vegeta.Ver"></activity>
-        <activity android:name="com.example.vegeta.MisRecetas"></activity>
-        
-        <activity android:name="com.example.vegeta.Ingred"></activity><activity android:name="com.example.vegeta.Result1"></activity>
+        <activity android:name="com.example.vegeta.MisRecetas"></activity>        
+        <activity android:name="com.example.vegeta.Ingred"></activity>
+        <activity android:name="com.example.vegeta.Result1"></activity>
         <activity android:name="com.example.vegeta.Modificar"></activity>
         <activity android:name="com.example.vegeta.Ingrediente"></activity>
-        <activity android:name="com.example.vegeta.FormIngrediente"></activity><activity android:name="com.example.vegeta.Error"></activity>
+        <activity android:name="com.example.vegeta.FormIngrediente"></activity>
+        <activity android:name="com.example.vegeta.Error"></activity>
         <activity android:name="com.example.vegeta.MisIngredientes"></activity>
         <activity android:name="com.example.vegeta.ResultIngrediente1"></activity>
         <activity android:name="com.example.vegeta.ModificarIngrediente"></activity>
         <activity android:name="com.example.vegeta.ResultIngrediente"></activity>
-        <activity android:name="com.example.vegeta.Buscar"></activity>
+        <activity android:name="com.example.vegeta.BuscarIngredienteActivity"></activity>
         <activity android:name="com.example.vegeta.Resbusqueda"></activity>
+        
         <activity android:name="com.example.vegeta.ResultRecetaActivity"></activity>
+        <activity android:name="com.example.vegeta.FormRecetaActivity"></activity>
         
         
     </application>

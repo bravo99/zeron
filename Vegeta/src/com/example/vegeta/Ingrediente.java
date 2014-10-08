@@ -45,7 +45,7 @@ public class Ingrediente extends Activity implements OnClickListener {
 				startActivity(i);
 				break;
 			case R.id.button3:
-				i = new Intent(this, Buscar.class);
+				i = new Intent(this, BuscarIngredienteActivity.class);
 				startActivity(i);
 				break;
 		}

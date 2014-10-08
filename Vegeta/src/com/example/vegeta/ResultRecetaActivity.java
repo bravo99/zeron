@@ -7,7 +7,9 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 public class ResultRecetaActivity extends Activity{
-	
+	TextView resultado1;
+	TextView resultado2;
+	String[] info;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -31,11 +33,10 @@ public class ResultRecetaActivity extends Activity{
 		spec3.setIndicator("Preparacion");
 		tabs.addTab(spec3);
 		
-		TextView resultado1;
-		TextView resultado2;
-		String[] info;
+		
+		
 		Intent men = getIntent();
-		info = men.getStringArrayExtra(Form.ACT_INFO);
+		info = men.getStringArrayExtra(ItemQueryAdapter.ACT_INFO1);
 		
 		resultado1 = (TextView)findViewById(R.id.tvpreparacion);
 		resultado1.setText(info[1]);

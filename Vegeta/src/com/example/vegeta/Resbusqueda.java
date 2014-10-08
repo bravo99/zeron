@@ -33,7 +33,7 @@ public class Resbusqueda extends Activity{
 		
 		toast1 =  Toast.makeText(getApplicationContext(),"Nuevo ingrediente disponible ", Toast.LENGTH_SHORT);
 		Intent men = getIntent();
-		info = men.getStringArrayExtra(Buscar.ACT_INFO);
+		info = men.getStringArrayExtra(BuscarIngredienteActivity.ACT_INFO);
 		resultado1.setText(info[0]);
 		resultado2.setText(info[1]);
 		

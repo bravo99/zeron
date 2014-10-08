@@ -42,7 +42,7 @@ public class Recetas extends Activity implements OnClickListener{
 		switch (id){
 		
 		 	case R.id.button6: //lanzar formulario
-		 		i = new  Intent(this,Form.class);
+		 		i = new  Intent(this,FormRecetaActivity.class);
 		 		startActivity(i);
 		 		break;
 			case R.id.button7:

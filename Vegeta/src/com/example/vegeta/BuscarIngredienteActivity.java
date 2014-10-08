@@ -23,7 +23,7 @@ import android.widget.Toast;
  * Buscar
  *
  */
-public class Buscar extends Activity{
+public class BuscarIngredienteActivity extends Activity{
 	
 	AutoCompleteTextView tvac;
 	Button bt;

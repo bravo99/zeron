@@ -19,7 +19,7 @@ public class ItemQueryAdapter extends BaseAdapter{
 	protected Activity activity;
 	protected ArrayList<ParseObject> items;
 	String[] info;
-	final static String ACT_INFO = "com.example.vegeta.Result";
+	final static String ACT_INFO1 = "com.example.vegeta.ResultRecetaActivity";
 	
 	
 	
@@ -91,8 +91,8 @@ public class ItemQueryAdapter extends BaseAdapter{
 
 	private void lanzar(String[] algo) {
 		
-		Intent a = new Intent(activity,Result.class );
-		a.putExtra(ACT_INFO, algo);
+		Intent a = new Intent(activity,ResultRecetaActivity.class );
+		a.putExtra(ACT_INFO1, algo);
 		activity.startActivity(a);
 		
 	}
