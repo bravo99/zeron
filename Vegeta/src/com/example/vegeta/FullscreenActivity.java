@@ -19,6 +19,8 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.Toast;
 import com.parse.Parse;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseUser;
 
 
 public class FullscreenActivity extends Activity implements OnTouchListener, OnClickListener {
@@ -36,6 +38,7 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 	Button btn3;
 	Button btn2;
 	Button btn1;
+	Button login;
 	Intent i;
 	final static int cons=0;
 	@Override
@@ -56,7 +59,7 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 
 		
 			Parse.initialize(this, "dWlZ6dRpL68VNQb1FXpkbtOHvDubsywsRWReOgP4", "RdHO2zjqPOhjlEI4Ywp8l1oX4vZq1cPvxzN7ohZi");
-	       	setContentView(R.layout.activity_fullscreen);
+	       	setContentView(R.layout.iniciosinlogin);
 	        init();
 	       
 			final View controlsView = findViewById(R.id.fullscreen_content_controls);
@@ -179,6 +182,8 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 		btn2.setOnClickListener(this);
 		btn1 = (Button)findViewById(R.id.button1);
 		btn1.setOnClickListener(this);
+		login = (Button)findViewById(R.id.login);
+		login.setOnClickListener(this);
 			
 	}
 	
@@ -191,14 +196,21 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 		 	case R.id.button2: //lanzar formulario
 		 		i = new  Intent(this,Recetas.class);//Recetas
 		 		startActivity(i);
+		 		//no puede agregar receta;
 		 		break;
 			case R.id.button3:
+				//no se pueden agregar lugares
 				i = new Intent(this,MainActivity.class);
 				startActivity(i);
 				break;
 			case R.id.button1:
+				//no se pueden administrar ingredientes
 				i = new  Intent(this,Ingrediente.class);
 		 		startActivity(i);
+				break;
+			case R.id.login:
+				i = new Intent(this,LoginSignUpActivity.class);
+				startActivity(i);
 				break;
 		}
 		
@@ -232,9 +244,34 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 	}
 	
     
+	public void login(){
+		//ParseApplication papp = new ParseApplication();
+		 // Determine whether the current user is an anonymous user
+      if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+          // If user is anonymous, send the user to LoginSignupActivity.class
+          Intent intent = new Intent(this,
+                  LoginSignUpActivity.class);
+          startActivity(intent);
+          finish();
+      } else {
+           //If current user is NOT anonymous user
+          // Get current user data from Parse.com
+          ParseUser currentUser = ParseUser.getCurrentUser();
+          if (currentUser != null) {
+              // Send logged in users to Welcome.class
+            Intent intent = new Intent(FullscreenActivity.this, Inicioconlogin.class);
+              startActivity(intent);
+             finish();
+          } else {
+              // Send user to LoginSignupActivity.class
+              Intent intent = new Intent(FullscreenActivity.this,
+                      LoginSignUpActivity.class);
+              startActivity(intent);
+              finish();
+          }
+      }
 	
-	
-	
+	}
 
 	
 	

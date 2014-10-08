@@ -38,6 +38,11 @@
     <string name="categoria">Categoria</string>
     <string name="HINTReceta">"Nombre de la Receta"</string>
     <string name="HINTprep">Agregue preparación</string>
-    
+    <string name="Username">Usuario</string>
+    <string name="Password">Password</string>
+    <string name="LoginBtn">Iniciar sesion</string>
+    <string name="SignupBtn">Registrarse</string>
+    <string name="Welcome">Bienvenido</string> 
+    <string name="LogoutBtn"> Cerrar sesion</string>   
   
 </resources>
