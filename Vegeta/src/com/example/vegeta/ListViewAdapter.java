@@ -9,11 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 public class ListViewAdapter extends BaseAdapter {
 
 	// Declare Variables
@@ -21,12 +21,16 @@ public class ListViewAdapter extends BaseAdapter {
 	LayoutInflater inflater;
 	ImageLoader imageLoader;
 	Dialog dialogIngrediente;
+	ArrayAdapter<String> adapter;
+	Dialog dialogLocal;
 	private List<ListIngredient> listaingredients = null;
 	private ArrayList<ListIngredient> arraylist2;
 
 	public ListViewAdapter(Context context,
-			List<ListIngredient> listaingredientes, Dialog mDialog) {
+			List<ListIngredient> listaingredientes, Dialog mDialog, Dialog dialogLocal, ArrayAdapter<String> adapter) {
 		this.dialogIngrediente = mDialog;
+		this.dialogLocal = dialogLocal;
+		this.adapter = adapter;
 		this.context = context;
 		this.listaingredients = listaingredientes;
 		inflater = LayoutInflater.from(context);
@@ -80,15 +84,17 @@ public class ListViewAdapter extends BaseAdapter {
 		imageLoader.DisplayImage(listaingredients.get(position).getImagenIngrediente(),
 				holder.imagen);
 		
-		Toast.makeText(context, "Solo falta hacer clikc", Toast.LENGTH_SHORT).show();
 		// Listen for ListView Item Click
 		
 		view.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
+				ListView lv_dialog = (ListView) dialogLocal.findViewById(R.id.lv_producto);
+				adapter.add((String) listaingredients.get(position).getNombre());
+				lv_dialog.setAdapter(adapter);
+				dialogIngrediente.dismiss();
 				
-				Toast.makeText(context, listaingredients.get(position).getNombre(), Toast.LENGTH_SHORT).show();
 				// Send single item click data to SingleItemView Class
 				/*Intent intent = new Intent(context, SingleItemView.class);
 				// Pass all data rank

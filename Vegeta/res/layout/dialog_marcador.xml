@@ -11,7 +11,7 @@
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="tv_dialogTitulo"
+		android:text="Agregar un Marcador"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/black"/>
 
@@ -41,7 +41,7 @@
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tv_restaurant"
+                android:text="Restaurant"
                 android:textColor="@android:color/black"/>
             
             <ImageButton 
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tv_carrito"
+                android:text="Local"
                 android:textColor="@android:color/black" />
 
             <ImageButton
