@@ -2,5 +2,6 @@
 <lint>
     <issue id="InflateParams">
         <ignore path="src/com/example/vegeta/ItemIngredienteQueryAdapter.java" />
+        <ignore path="src/com/example/vegeta/ListViewAdapter.java" />
     </issue>
 </lint>

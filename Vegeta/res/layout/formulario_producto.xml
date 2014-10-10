@@ -10,7 +10,7 @@
         android:id="@+id/tv_titulo"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="tv_dialogTituloLocal"
+		android:text="Agregar un Local"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/black"/>
     <View
@@ -26,7 +26,7 @@
         android:id="@+id/tv_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tv_nombreLocal"
+        android:text="Nombre del Local"
         android:layout_below="@id/divider"/>
 
     
@@ -46,7 +46,7 @@
         android:layout_below="@id/et_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="tv_descripcionLocal"/>
+        android:text="Descripción"/>
     <EditText 
         android:id="@+id/et_descripcion"
         android:layout_width="match_parent"
@@ -60,7 +60,7 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/et_descripcion"
-	    android:text="agregar_producto"/>
+	    android:text="Productos que se pueden encontrar"/>
 
     <ListView
         android:id="@+id/lv_producto"
@@ -96,7 +96,7 @@
 	        android:id="@+id/tv_camara"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="tv_camara"
+	        android:text="Foto"
 	        android:layout_gravity="center_vertical"/>
     </LinearLayout>
     

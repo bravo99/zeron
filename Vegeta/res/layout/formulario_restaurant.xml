@@ -15,17 +15,10 @@
     	<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="tv_dialogTituloRestaurant"
+			android:text="Agregar Restaurant"
         	android:textAppearance="?android:attr/textAppearanceLarge"
         	android:textColor="@android:color/black"
         	android:layout_marginRight="5dp"/>
-
-    	<ImageView
-    	    android:id="@+id/iv_restaurant"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:src="@drawable/camara"
-    	     />
 
     </LinearLayout>
     <View
@@ -41,7 +34,7 @@
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tv_nombreRestaurant"/>
+        android:text="Nombre Restaurant"/>
 
     
     <EditText 
@@ -56,7 +49,7 @@
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tv_descripcionRestaurant"/>
+        android:text="Descripción"/>
     
     <EditText 
         android:id="@+id/et_descripcionRestaurant"
@@ -91,7 +84,7 @@
 	            <TextView 
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="tv_vegetariano"
+	                android:text="Vegetariano"
 	                android:layout_gravity="center_vertical"/>
 	            
 	        </LinearLayout>
@@ -109,7 +102,7 @@
 	            <TextView 
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="tv_vegano"
+	                android:text="Vegano"
 	                android:layout_gravity="center_vertical"/>
 	            
 	        </LinearLayout>
@@ -136,7 +129,7 @@
 		    android:id="@+id/tv_camara_foto"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:text="tv_camara"
+		    android:text="Foto"
 		    android:layout_gravity="center_vertical"/>
 	</LinearLayout>
 	</LinearLayout>

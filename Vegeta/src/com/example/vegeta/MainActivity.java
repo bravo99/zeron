@@ -1,22 +1,27 @@
 package com.example.vegeta;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -24,6 +29,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -35,13 +42,13 @@ import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -49,14 +56,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-	public class MainActivity extends FragmentActivity implements OnMapClickListener, OnMyLocationChangeListener, OnMapLongClickListener {
+	public class MainActivity extends FragmentActivity implements OnMapClickListener, OnMyLocationChangeListener, OnMapLongClickListener, OnCameraChangeListener {
 	private GoogleMap mMap;
 	private File imageFile;
-	Location myLocation;
+	Bitmap mBitmap;
+	Location myLocation=null;
 	ArrayList<ParseObject> posts;
 	Dialog dialogMarker = null, dialogRestaurant=null, dialogLocal=null, dialogIngredient=null;
 	String city = "";
 	String city2 ="";
+	ArrayAdapter<String> adapter2;
 	ListView lv_ingredientes; // ListView donde poner todos los ingredientes de parse! 
 	
 	//Para lo del ListView
@@ -97,6 +106,12 @@ import android.widget.Toast;
         SupportMapFragment mapFrag =
 				(SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 		mMap = mapFrag.getMap();
+		mMap.setMyLocationEnabled(true);
+		// cuando cambia mi posicion
+		mMap.setOnMyLocationChangeListener(this);
+		mMap.setOnCameraChangeListener(this);
+		
+		
 		// Poner latitud y longitud de Valparaiso
 		LatLng valparaiso = new LatLng(-33.063056, -71.639444);
 		// Muevo la camara hacia Valparaiso
@@ -116,30 +131,11 @@ import android.widget.Toast;
 		mMap.setOnMapClickListener(this);
 		mMap.setOnMapLongClickListener(this);
 		// Poner el boton mi ubicacion al mapa
-		mMap.setMyLocationEnabled(true);
-		// cuando cambia mi posicion
-		mMap.setOnMyLocationChangeListener(this);
+		
 		
         }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-      //  getMenuInflater().inflate(R.menu.main, menu);
-    	
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        
-        return super.onOptionsItemSelected(item);
-    }
 
 
 	@Override
@@ -250,7 +246,6 @@ import android.widget.Toast;
 	            public void onClick(View view)
 	            {
 	            	dialogMarker.dismiss();
-	            	Toast.makeText(MainActivity.this, "holi shet", Toast.LENGTH_SHORT).show();
 	                 
 	            }
 	        });
@@ -325,11 +320,32 @@ import android.widget.Toast;
 									return;
 								}
 								else{
-									Toast.makeText(MainActivity.this, "Ingrese alguna descripci�n", Toast.LENGTH_SHORT).show();
+									Toast.makeText(MainActivity.this, "Ingrese alguna descripcion", Toast.LENGTH_SHORT).show();
 									return;
 								}
 							}
 							// Si los campos est�n rellenos se procede a incluir el marcador en el mapa
+							
+							ParseGeoPoint point = new ParseGeoPoint(myLocation.getLatitude(), myLocation.getLongitude());
+							// Guardamos todo en parse!
+							ParseObject po_marcador = new ParseObject("Restaurant");
+						    po_marcador.put("nombre", nombre_restaurant);
+						    po_marcador.put("descripcion", descripcion );
+						    po_marcador.put("location", point);
+						    if(mBitmap!=null){
+						    	ByteArrayOutputStream stream = new ByteArrayOutputStream();
+								mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+								byte[] data = stream.toByteArray();                
+								ParseFile iFile = new ParseFile("image.jpg", data);
+								iFile.saveInBackground();
+								po_marcador.put("imagen",iFile);
+								mBitmap=null;
+						    }
+						    //siempre autor sera vegetatest para este entregable
+						    po_marcador.put("autor", "vegetatest" );
+							po_marcador.saveInBackground();
+							
+							
 							
 							MarkerOptions marcador = new MarkerOptions();
 							marcador.title(nombre_restaurant);
@@ -372,6 +388,52 @@ import android.widget.Toast;
 						@Override
 						public void onClick(View v) {
 							dialogLocal.dismiss();
+							adapter2=null;
+						}
+					});
+	            	
+	            	((Button) dialogLocal.findViewById(R.id.aceptar)).setOnClickListener(new View.OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							String nombre="", descripcion="";
+							EditText et_nombre=null, et_descripcion=null;
+							et_nombre = (EditText) dialogLocal.findViewById(R.id.et_nombre);
+							et_descripcion = (EditText) dialogLocal.findViewById(R.id.et_descripcion);
+							nombre= et_nombre.getText().toString();
+							descripcion= et_descripcion.getText().toString();
+							
+							if(nombre.equals("")||descripcion.equals("")){
+								if(nombre.equals("")){
+									Toast.makeText(MainActivity.this, "Ingrese el nombre del Local", Toast.LENGTH_SHORT).show();
+									return;
+								}
+								else{
+									Toast.makeText(MainActivity.this, "Ingrese alguna descripcion", Toast.LENGTH_SHORT).show();
+									return;
+								}
+							}
+							ParseGeoPoint point = new ParseGeoPoint(myLocation.getLatitude(), myLocation.getLongitude());
+							// Guardamos todo en parse!
+							ParseObject po_marcador = new ParseObject("LocalComercial");
+						    po_marcador.put("nombre", nombre);
+						    po_marcador.put("descripcion", descripcion );
+						    po_marcador.put("location", point);
+						    if(mBitmap!=null){
+						    	ByteArrayOutputStream stream = new ByteArrayOutputStream();
+								mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+								byte[] data = stream.toByteArray();                
+								ParseFile iFile = new ParseFile("image.jpg", data);
+								iFile.saveInBackground();
+								po_marcador.put("imagen",iFile);
+								mBitmap=null;
+						    }
+						    //siempre autor sera vegetatest para este entregable
+						    po_marcador.put("autor", "vegetatest" );
+							po_marcador.saveInBackground();
+							dialogLocal.dismiss();
+							dialogMarker.dismiss();
+							adapter2=null;
 						}
 					});
 	            	
@@ -399,6 +461,10 @@ import android.widget.Toast;
 							dialogIngredient.setContentView(R.layout.listview_main);
 							dialogIngredient.setCanceledOnTouchOutside(false);
 							dialogIngredient.show();
+							if(adapter2==null){
+								adapter2 = new ArrayAdapter<String>(MainActivity.this,
+									R.layout.todo_row);
+							}
 							
 							new RemoteDataTask().execute();
 						}
@@ -428,7 +494,7 @@ import android.widget.Toast;
 						imgbtn.setImageResource(R.drawable.imagen_ready);
 						TextView nombre_camara = (TextView) dialogRestaurant.findViewById(R.id.tv_camara_foto);
 						nombre_camara.setText("Imagen adjunta");
-						// Bitmap mBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+						mBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 						
 						//ImageView mImageview = (ImageView) dialogRestaurant.findViewById(R.id.iv_restaurant);
 						//mImageview.setImageBitmap(mBitmap);
@@ -443,6 +509,7 @@ import android.widget.Toast;
 						imgbtn.setImageResource(R.drawable.imagen_ready);
 						TextView nombre_camara = (TextView) dialogLocal.findViewById(R.id.tv_camara);
 						nombre_camara.setText("Imagen adjunta");
+						mBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 						// Bitmap mBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 						
 						//ImageView mImageview = (ImageView) dialogRestaurant.findViewById(R.id.iv_restaurant);
@@ -458,6 +525,8 @@ import android.widget.Toast;
 				}
 				break;
 			case Activity.RESULT_CANCELED:
+				imageFile=null;
+				mBitmap=null;
 				ImageButton imgbtn;
 				if(dRestaurant){
 					Toast.makeText(this, "Sacar foto fue cancelado!", Toast.LENGTH_SHORT).show();
@@ -528,12 +597,70 @@ import android.widget.Toast;
 			// Pass the results into ListViewAdapter.java
 			//adapter = new ListViewAdapter(MainActivity.this,
 				//	worldpopulationlist);
-			adapter = new ListViewAdapter(MainActivity.this, listingredient, dialogIngredient);
+			adapter = new ListViewAdapter(MainActivity.this, listingredient, dialogIngredient, dialogLocal, adapter2);
 			// Binds the Adapter to the ListView
 			listview.setAdapter(adapter);
 			// Close the progressdialog
 			mProgressDialog.dismiss();
 		}
+	}
+
+	@Override
+	public void onCameraChange(CameraPosition position) {
+		if(myLocation==null){
+			return;
+		}
+		ParseGeoPoint userLocation = new ParseGeoPoint(myLocation.getLatitude(),myLocation.getLongitude());
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
+		query.whereNear("location", userLocation);
+		query.setLimit(30); 
+		query.findInBackground(new FindCallback<ParseObject>() {
+			
+			@Override
+			public void done(List<ParseObject> mlist, ParseException e) {
+				// TODO Auto-generated method stub
+				if(e==null){
+					MarkerOptions marcador = new MarkerOptions();
+					LatLng myPosition;
+					for(ParseObject rest : mlist){
+						ParseGeoPoint ubicacion = (ParseGeoPoint) rest.getParseGeoPoint("location");
+						myPosition= new LatLng(ubicacion.getLatitude(), ubicacion.getLongitude());
+						marcador.title(rest.getString("nombre"));
+						marcador.snippet(rest.getString("descripcion"));
+						marcador.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_restaurant));
+						marcador.position(myPosition);
+						mMap.addMarker(marcador);
+					}
+				}
+			}
+		});
+		
+		ParseQuery<ParseObject> query2 = ParseQuery.getQuery("LocalComercial");
+		query2.whereNear("location", userLocation);
+		query2.setLimit(30); 
+		query2.findInBackground(new FindCallback<ParseObject>() {
+			
+			@Override
+			public void done(List<ParseObject> mlist, ParseException e) {
+				// TODO Auto-generated method stub
+				if(e==null){
+					MarkerOptions marcador = new MarkerOptions();
+					LatLng myPosition;
+					for(ParseObject rest : mlist){
+						ParseGeoPoint ubicacion = (ParseGeoPoint) rest.getParseGeoPoint("location");
+						myPosition= new LatLng(ubicacion.getLatitude(), ubicacion.getLongitude());
+						marcador.title(rest.getString("nombre"));
+						marcador.snippet(rest.getString("descripcion"));
+						marcador.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_carrito));
+						marcador.position(myPosition);
+						mMap.addMarker(marcador);
+					}
+				}
+			}
+		});
+		
+		
+		
 	}
 	
 	
