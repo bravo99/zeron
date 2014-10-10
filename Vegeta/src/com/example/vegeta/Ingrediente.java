@@ -1,8 +1,5 @@
 package com.example.vegeta;
 
-import com.parse.ParseAnonymousUtils;
-import com.parse.ParseUser;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +14,7 @@ public class Ingrediente extends Activity implements OnClickListener {
 	Button btn9;
 	Button btn10;
 	Intent i;
-	ParseUser pu;
-	
-	
+	boolean estado;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +22,12 @@ public class Ingrediente extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ingrediente);
 		init();
-		pu = ParseUser.getCurrentUser();
+	
 		
 	}
 	public void init(){
+		Bundle bundle = getIntent().getExtras();
+		estado = bundle.getBoolean("ESTADO");
 		
 		btn8 = (Button)findViewById(R.id.button1);
 		btn8.setOnClickListener(this);
@@ -48,8 +45,8 @@ public class Ingrediente extends Activity implements OnClickListener {
 		switch (id){
 		
 		 	case R.id.button1: //lanzar formulario
-		 		if (pu.equals(null)){
-		 			Toast.makeText(getApplicationContext(),"Inicie sesion para acceder a esta funcionalidad",Toast.LENGTH_LONG).
+		 		if (estado==false){
+		 			Toast.makeText(getApplicationContext(),"Solo puede acceder iniciando sesion",Toast.LENGTH_LONG).
 		 			show();
 		 		}
 		 		else{
@@ -57,16 +54,26 @@ public class Ingrediente extends Activity implements OnClickListener {
 		 		startActivity(i);}
 		 		break;
 			case R.id.button2:
-				if (false){
-		 			Toast.makeText(getApplicationContext(),"Inicie sesion para acceder a esta funcionalidad",Toast.LENGTH_LONG).
+				if (estado==false){
+		 			Toast.makeText(getApplicationContext(),"Solo puede acceder iniciando sesion",Toast.LENGTH_LONG).
 		 			show();
 		 		}else{
 				i = new Intent(this,MisIngredientes.class);
 				startActivity(i);}
 				break;
 			case R.id.button3:
+				Bundle bundle2 = new Bundle();
 				i = new Intent(this, BuscarIngredienteActivity.class);
-				startActivity(i);
+				
+				if(estado==false){
+					bundle2.putBoolean("ESTADO", false);
+				}
+				else{
+					bundle2.putBoolean("ESTADO", true);
+				}
+				
+			    i.putExtras(bundle2);
+			    startActivity(i);
 				break;
 		}
 		

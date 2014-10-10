@@ -53,6 +53,7 @@ public class LoginSignUpActivity extends Activity {
                                     Intent intent = new Intent(
                                             LoginSignUpActivity.this,
                                             Inicioconlogin.class);
+                                    
                                     startActivity(intent);
                                     Toast.makeText(getApplicationContext(),
                                             "Se inició la sesión exitosamente",

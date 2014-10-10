@@ -42,8 +42,6 @@ public class FormRecetaActivity extends Activity{
 	}
 
 	
-
-
 	private void init(Context c) {
 		//Resources res = getResources();
 				TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);

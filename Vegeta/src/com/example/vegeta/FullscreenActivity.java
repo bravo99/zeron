@@ -56,7 +56,6 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 		    
 		    
 		}
-
 		
 			Parse.initialize(this, "dWlZ6dRpL68VNQb1FXpkbtOHvDubsywsRWReOgP4", "RdHO2zjqPOhjlEI4Ywp8l1oX4vZq1cPvxzN7ohZi");
 	       	setContentView(R.layout.iniciosinlogin);
@@ -189,23 +188,30 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
 	
 	@Override
 	public void onClick(View v) {
+		
+		Bundle bundle = new Bundle();
+		bundle.putBoolean("ESTADO", false);
+		
 		int id;
 		id= v.getId();
 		switch (id){
 		
 		 	case R.id.button2: //lanzar formulario
 		 		i = new  Intent(this,Recetas.class);//Recetas
+		 		i.putExtras(bundle);
 		 		startActivity(i);
 		 		//no puede agregar receta;
 		 		break;
 			case R.id.button3:
 				//no se pueden agregar lugares
 				i = new Intent(this,MainActivity.class);
+				i.putExtras(bundle);
 				startActivity(i);
 				break;
 			case R.id.button1:
 				//no se pueden administrar ingredientes
 				i = new  Intent(this,Ingrediente.class);
+				i.putExtras(bundle);
 		 		startActivity(i);
 				break;
 			case R.id.login:
@@ -260,6 +266,7 @@ public class FullscreenActivity extends Activity implements OnTouchListener, OnC
           if (currentUser != null) {
               // Send logged in users to Welcome.class
             Intent intent = new Intent(FullscreenActivity.this, Inicioconlogin.class);
+            
               startActivity(intent);
              finish();
           } else {

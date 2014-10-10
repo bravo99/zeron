@@ -20,9 +20,7 @@ import android.app.Activity;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 
-import android.widget.Toast;
-
-
+import com.parse.Parse;
 import com.parse.ParseUser;
 
 
@@ -48,6 +46,8 @@ public class Inicioconlogin extends Activity implements OnTouchListener, OnClick
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Parse.initialize(this, "dWlZ6dRpL68VNQb1FXpkbtOHvDubsywsRWReOgP4", "RdHO2zjqPOhjlEI4Ywp8l1oX4vZq1cPvxzN7ohZi");
         // Get the view from activity_fullscreen.xml
         setContentView(R.layout.inicioconlogin);
         
@@ -196,26 +196,31 @@ logout.setOnClickListener(this); // Logout Button Click Listener
 
 @Override
 public void onClick(View v) {
-int id;
-id= v.getId();
-switch (id){
-	case R.id.button2: //lanzar formulario
- 		i = new  Intent(this,Recetas.class);//Recetas
- 		startActivity(i);
- 		break;
-	case R.id.button3:
-		i = new Intent(this,MainActivity.class);
-		startActivity(i);
-		break;
-	case R.id.button1:
-		i = new  Intent(this,Ingrediente.class);
- 		startActivity(i);
-		break;
-	case R.id.logout:
-		// Logout current user
-		ParseUser.logOut();
-        finish();
-    }
+	Bundle bundle = new Bundle();
+	bundle.putBoolean("ESTADO", true);
+	int id;
+	id= v.getId();
+	switch (id){
+		case R.id.button2: //lanzar formulario
+	 		i = new  Intent(this,Recetas.class);//Recetas
+	 		i.putExtras(bundle);
+	 		startActivity(i);
+	 		break;
+		case R.id.button3:
+			i = new Intent(this,MainActivity.class);
+			i.putExtras(bundle);
+			startActivity(i);
+			break;
+		case R.id.button1:
+			i = new  Intent(this,Ingrediente.class);
+			i.putExtras(bundle);
+	 		startActivity(i);
+			break;
+		case R.id.logout:
+			// Logout current user
+			ParseUser.logOut();
+	        finish();
+	    }
 }
 
 

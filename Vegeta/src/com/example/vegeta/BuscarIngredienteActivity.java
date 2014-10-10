@@ -30,6 +30,7 @@ public class BuscarIngredienteActivity extends Activity{
 	final static String ACT_INFO = "com.example.vegeta.Resbusqueda";
 	String[] info;
 	Toast toast1; 
+	boolean estado;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -39,6 +40,8 @@ public class BuscarIngredienteActivity extends Activity{
 	}
 	
 	private void init() {
+		Bundle bundle = getIntent().getExtras();
+		estado = bundle.getBoolean("ESTADO");
 		tvac=(AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
 		bt=(Button) findViewById(R.id.button1);
 		toast1 =  Toast.makeText(getApplicationContext(),"Ingrese su busqueda", Toast.LENGTH_SHORT);
@@ -73,7 +76,13 @@ public class BuscarIngredienteActivity extends Activity{
 				            lanzar();
 				            }
 				        	else{
-					    		 lanzar2();
+				        		if(estado==true){
+					    		 lanzar2();}
+				        		else{
+				        			Toast.makeText(BuscarIngredienteActivity.this, "No se encontro el Ingrediente, si desea agregarlo inicie sesion",
+				        					Toast.LENGTH_LONG).show();
+				        		}
+				        		
 					    	}
 						  }
 				    				    	        				    		
