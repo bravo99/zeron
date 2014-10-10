@@ -136,17 +136,10 @@ public final class R {
 		public static final int abc_split_action_bar_is_narrow = 0x7f060002;
 	}
 	public static final class color {
-<<<<<<< HEAD
-		public static final int abc_search_url_text_holo = 0x7f060020;
-		public static final int abc_search_url_text_normal = 0x7f060017;
-		public static final int abc_search_url_text_pressed = 0x7f060019;
-		public static final int abc_search_url_text_selected = 0x7f060018;
-=======
-		public static final int abc_search_url_text_holo = 0x7f07001f;
+		public static final int abc_search_url_text_holo = 0x7f070020;
 		public static final int abc_search_url_text_normal = 0x7f070000;
 		public static final int abc_search_url_text_pressed = 0x7f070002;
 		public static final int abc_search_url_text_selected = 0x7f070001;
->>>>>>> 448f1bfd6aa8a697004481c140e0804afe4ebc5b
 	}
 	public static final class dimen {
 		public static final int abc_action_bar_default_height = 0x7f080002;
