@@ -1,9 +1,0 @@
-package com.vegeta.vegetaappmaps;
-
-public class MapStateManager {
-	private static final String LONGITUDE = "longitude";
-	private static final String LATITUDE = "latitude";
-	private static final String ZOOM = "zoom";
-	private static final String BEARING = "bearing";
-	private static final String TILT = "tilt";
-}

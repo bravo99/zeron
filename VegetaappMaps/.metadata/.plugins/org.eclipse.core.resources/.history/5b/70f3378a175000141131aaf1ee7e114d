@@ -1,6 +1,0 @@
-package com.vegeta.vegetaappmaps;
-
-public class MapStateManager {
-	private static final String LONGITUDE = "longitude";
-	private static final String LATITUDE = "latitude";
-}
