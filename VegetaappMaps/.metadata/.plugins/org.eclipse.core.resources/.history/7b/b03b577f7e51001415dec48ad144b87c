@@ -1,0 +1,6 @@
+package com.vegeta.vegetaappmaps;
+
+@ParseClassName("Restaurant");
+public class RestaurantPost {
+
+}

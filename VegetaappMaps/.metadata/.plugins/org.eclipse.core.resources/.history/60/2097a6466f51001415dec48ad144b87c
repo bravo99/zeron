@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    tools:context=".MapActivity"
+	    android:layout_weight="1" >
+	
+	    <fragment
+	        android:id="@+id/map"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:name="com.google.android.gms.maps.SupportMapFragment"
+	        android:scrollbars="vertical"/>
+	
+	    <LinearLayout
+	        android:id="@+id/lly"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" 
+	        android:layout_centerInParent="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginRight="10dp"
+	        android:background="#80FFFFFF"
+	        >
+			<ImageButton 
+			    android:id="@+id/ib_restaurant"
+			    android:contentDescription="@string/ib_restaurant"
+			    android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:padding="5dp"
+	            android:onClick="BotonFuncion"
+	            android:src="@drawable/restaurant"            
+	            android:layout_marginBottom="10dp"/>
+			
+			<ImageButton 
+			    android:id="@+id/ib_local"
+			    android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:contentDescription="@string/ib_local"
+	            android:padding="5dp"
+	            android:onClick="BotonFuncion"
+	            android:src="@drawable/local"
+	            android:layout_marginBottom="10dp"/>
+			
+	    </LinearLayout>
+	    <ImageButton 
+			android:id="@+id/ib_geolocalize"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/ib_geolocalize"
+			android:padding="5dp"
+			android:onClick="botonFuncion"
+			android:src="@drawable/geolocalize"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"/>
+	    
+	</RelativeLayout> 
+	<ListView 
+	    android:id="@+id/lv_restaurant"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="3"></ListView>
+	
+</LinearLayout>

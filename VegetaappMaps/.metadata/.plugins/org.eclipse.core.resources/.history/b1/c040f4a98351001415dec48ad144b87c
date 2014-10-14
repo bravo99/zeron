@@ -1,0 +1,35 @@
+package com.vegeta.vegetaappmaps;
+
+import com.parse.ParseClassName;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+@ParseClassName("Restaurant")
+public class RestaurantPost extends ParseObject {
+	
+	public String getNombre(){
+		return getString("nombre");
+	}
+	
+	public void  setNombre(String value){
+		put("nombre", value);
+	}
+	public String getDescripcion(){
+		return getString("descripcion");
+	}
+	public void setDescripcion(String value){
+		put("descripcion", value);
+	}
+	public ParseGeoPoint getLocation(){
+		return getParseGeoPoint("location");
+	}
+	public void setLocation(ParseGeoPoint value){
+		put("location", value);
+	}
+	
+	public ParseUser getUser(){
+		return getParseUser("creado_por");
+	}
+
+}

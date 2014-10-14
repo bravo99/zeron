@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <LinearLayout 
+        android:id="@+id/ll_busqueda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    <EditText 
+	        android:id="@+id/et_buscarAlimento"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="text"
+	        android:layout_weight="1"/>
+	    <Button 
+	        android:id="@+id/btn_buscar"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="4"/>
+    </LinearLayout>
+    <ListView 
+        android:id="@+id/lv_alimentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_busqueda"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"></ListView>
+
+</RelativeLayout>
