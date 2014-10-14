@@ -27,5 +27,9 @@
    <string name="camara">Foto</string>
    <string name="productos">Productos que se pueden encontrar</string>
    <string name="iv_agregar">Boton para agregar productos a un local</string>
+   
+   <string name="open_drawer">Drawer abierto</string>
+   <string name="close_drawer">Drawer cerrado</string>
+   <string name="buscar">Buscar</string>
 
 </resources>

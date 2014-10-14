@@ -3,7 +3,6 @@ package com.example.vegeta;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TabHost;
