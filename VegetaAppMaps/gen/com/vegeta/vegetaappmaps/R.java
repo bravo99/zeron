@@ -17,6 +17,7 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
+        public static final int ic_nav_option=0x7f0c0001;
         public static final int nav_options=0x7f0c0000;
     }
     public static final class attr {
@@ -1467,17 +1468,19 @@ containing a value of this type.
         public static final int dialog_divider=0x7f020074;
         public static final int drawer_shadow=0x7f020075;
         public static final int geolocalize=0x7f020076;
-        public static final int ic_action_search=0x7f020077;
-        public static final int ic_drawer=0x7f020078;
-        public static final int ic_launcher2=0x7f020079;
-        public static final int ic_plusone_medium_off_client=0x7f02007a;
-        public static final int ic_plusone_small_off_client=0x7f02007b;
-        public static final int ic_plusone_standard_off_client=0x7f02007c;
-        public static final int ic_plusone_tall_off_client=0x7f02007d;
-        public static final int local=0x7f02007e;
-        public static final int powered_by_google_dark=0x7f02007f;
-        public static final int powered_by_google_light=0x7f020080;
-        public static final int restaurant=0x7f020081;
+        public static final int ic_action_important=0x7f020077;
+        public static final int ic_action_place=0x7f020078;
+        public static final int ic_action_search=0x7f020079;
+        public static final int ic_drawer=0x7f02007a;
+        public static final int ic_launcher2=0x7f02007b;
+        public static final int ic_plusone_medium_off_client=0x7f02007c;
+        public static final int ic_plusone_small_off_client=0x7f02007d;
+        public static final int ic_plusone_standard_off_client=0x7f02007e;
+        public static final int ic_plusone_tall_off_client=0x7f02007f;
+        public static final int local=0x7f020080;
+        public static final int powered_by_google_dark=0x7f020081;
+        public static final int powered_by_google_light=0x7f020082;
+        public static final int restaurant=0x7f020083;
     }
     public static final class id {
         public static final int aceptar=0x7f050067;
@@ -1492,12 +1495,12 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050036;
-        public static final int action_search=0x7f050072;
-        public static final int action_search_city=0x7f050073;
-        public static final int action_search_local=0x7f050075;
-        public static final int action_search_producto=0x7f050076;
-        public static final int action_search_restaurant=0x7f050074;
-        public static final int action_settings=0x7f050071;
+        public static final int action_search=0x7f050074;
+        public static final int action_search_city=0x7f050075;
+        public static final int action_search_local=0x7f050077;
+        public static final int action_search_producto=0x7f050078;
+        public static final int action_search_restaurant=0x7f050076;
+        public static final int action_settings=0x7f050073;
         public static final int activity_chooser_view_content=0x7f050037;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1540,6 +1543,7 @@ containing a value of this type.
         public static final int ib_geolocalize=0x7f050051;
         public static final int ib_local=0x7f050050;
         public static final int ib_restaurant=0x7f05004f;
+        public static final int ic_navigation=0x7f050070;
         public static final int icon=0x7f05003c;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050039;
@@ -1556,7 +1560,7 @@ containing a value of this type.
         public static final int middle=0x7f050012;
         public static final int monochrome=0x7f05002b;
         public static final int never=0x7f050009;
-        public static final int nombre=0x7f050070;
+        public static final int nombre=0x7f050072;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
         public static final int pin_carrito=0x7f050059;
@@ -1587,6 +1591,7 @@ containing a value of this type.
         public static final int submit_area=0x7f05004b;
         public static final int tabMode=0x7f050002;
         public static final int terrain=0x7f05001b;
+        public static final int text_navigation=0x7f050071;
         public static final int title=0x7f05003d;
         public static final int top_action_bar=0x7f050032;
         public static final int tv_camara=0x7f050065;
@@ -1658,9 +1663,10 @@ containing a value of this type.
         public static final int formulario_producto=0x7f03001c;
         public static final int formulario_restaurant=0x7f03001d;
         public static final int fragment=0x7f03001e;
-        public static final int main=0x7f03001f;
-        public static final int support_simple_spinner_dropdown_item=0x7f030020;
-        public static final int urgent_item=0x7f030021;
+        public static final int main_activity_drawer=0x7f03001f;
+        public static final int navigation_adapter=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
+        public static final int urgent_item=0x7f030022;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;

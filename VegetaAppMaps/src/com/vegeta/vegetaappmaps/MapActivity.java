@@ -150,7 +150,7 @@ com.google.android.gms.location.LocationListener{
     	case R.id.ib_geolocalize:
     		Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
         	if(myLoc == null){
-        		Toast.makeText(this, "Por favor intentelo nuevamente después que su posición aparezca",Toast.LENGTH_SHORT).show();
+        		Toast.makeText(this, "Por favor intentelo nuevamente despuï¿½s que su posiciï¿½n aparezca",Toast.LENGTH_SHORT).show();
         		return;
         	}
         	dialogMarker = new Dialog(this, R.style.Theme_Dialog_Translucent);
@@ -227,7 +227,7 @@ com.google.android.gms.location.LocationListener{
 							// Si los campos no estan vacios, se guarda el registro en la base de datos.
 							Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 				        	if(myLoc == null){
-				        		Toast.makeText(MapActivity.this, "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+				        		Toast.makeText(MapActivity.this, "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 				        		return;
 				        	}
 				        	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());

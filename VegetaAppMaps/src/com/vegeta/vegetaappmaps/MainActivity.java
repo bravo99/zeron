@@ -1,6 +1,11 @@
 package com.vegeta.vegetaappmaps;
 
+import java.util.ArrayList;
+
+import com.parse.Parse;
+
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -11,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
@@ -19,27 +23,43 @@ public class MainActivity extends ActionBarActivity {
 	private DrawerLayout drawerLayout;
 	private ListView navList;
 	private CharSequence mTitle;
+	
+	private String[] titulos;
+	private ArrayList<ItemObject> NavItms;
+	private TypedArray NavIcons;
+	ListNavigationAdapter navAdapter;
+	
 
 	private ActionBarDrawerToggle drawerToggle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-
+		setContentView(R.layout.main_activity_drawer);
+		 Parse.initialize(this, "u9VdDovJEB22hYLgjjGm6hjaKH08dzuwhPq4dWGc", "gtDf7cQQEoGJrp89xgZfazpgYfnAyq2OJFBBuumK");
 		mTitle = getTitle(); // Get current title
 
 		this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		this.navList = (ListView) findViewById(R.id.left_drawer);
-
+		
+		NavIcons = getResources().obtainTypedArray(R.array.ic_nav_option);
+		titulos=getResources().getStringArray(R.array.nav_options);
+		NavItms = new ArrayList<ItemObject>();
+		NavItms.add(new ItemObject(titulos[0],NavIcons.getResourceId(0, -1) ) );
+		NavItms.add(new ItemObject(titulos[1],NavIcons.getResourceId(1, -1) ) );
+		NavItms.add(new ItemObject(titulos[2],NavIcons.getResourceId(2, -1) ) );
+		NavItms.add(new ItemObject(titulos[3],NavIcons.getResourceId(3, -1) ) );
+		
+		navAdapter = new ListNavigationAdapter(this, NavItms);
+		navList.setAdapter(navAdapter);
 		// Load an array of options names
-		final String[] names = getResources().getStringArray(
-				R.array.nav_options);
+		//final String[] names = getResources().getStringArray(
+			//	R.array.nav_options);
 
 		// Set previous array as adapter of the list
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, names);
-		navList.setAdapter(adapter);
+		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+			//	android.R.layout.simple_list_item_1, names);
+	  //	navList.setAdapter(adapter);
 		navList.setOnItemClickListener(new DrawerItemClickListener());
 		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
 				R.drawable.ic_drawer, R.string.open_drawer,
@@ -126,17 +146,63 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
-	/** Swaps fragments in the main content view */
+	/** Swaps fragments in the main content view 
+	 * aqui modificar todo
+	 * */
+	
+	
 	private void selectItem(int position) {
 		// Get text from resources
 		mTitle = getResources().getStringArray(R.array.nav_options)[position];
 
 		// Create a new fragment and specify the option to show based on
 		// position
-		Fragment fragment = new MyFragment();
+		//Fragment fragment = new MyFragment();
+		
+
+		
+		Fragment fragment = null;
 		Bundle args = new Bundle();
-		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
-		fragment.setArguments(args);
+		switch (position) {
+
+        case 0:
+
+            //fragment =new RecetaFragment();
+        	 fragment = new MyFragment();
+        	 args.putString(MyFragment.KEY_TEXT, mTitle.toString());
+     		fragment.setArguments(args);
+            break;
+
+        case 1:
+
+            fragment = new MyFragment();
+            
+    		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
+    		fragment.setArguments(args);
+            break;
+
+        case 2:
+
+            fragment = new MyFragment();
+            
+    		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
+    		fragment.setArguments(args);
+            break;
+
+        case 3:
+
+            fragment = new MyFragment();
+            
+    		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
+    		fragment.setArguments(args);
+            break;
+
+        
+        default:
+
+            break;
+
+        }
 
 		// Insert the fragment by replacing any existing fragment
 		FragmentManager fragmentManager = getSupportFragmentManager();
