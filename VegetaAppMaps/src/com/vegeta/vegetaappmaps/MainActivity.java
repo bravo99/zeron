@@ -89,7 +89,14 @@ public class MainActivity extends ActionBarActivity {
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
-
+		
+		 Fragment fragment = new MyFragment();
+		 Bundle args = new Bundle();
+ 		 args.putString(MyFragment.KEY_TEXT, mTitle.toString());
+ 		 fragment.setArguments(args);
+ 		 FragmentManager fragmentManager = getSupportFragmentManager();
+		 fragmentManager.beginTransaction()
+				.replace(R.id.content_frame, fragment).commit();
 	}
 
 	@Override
@@ -163,18 +170,18 @@ public class MainActivity extends ActionBarActivity {
 		
 		Fragment fragment = null;
 		Bundle args = new Bundle();
+		
 		switch (position) {
 
         case 0:
-
-            //fragment =new RecetaFragment();
-        	 fragment = new MyFragment();
-        	 args.putString(MyFragment.KEY_TEXT, mTitle.toString());
-     		fragment.setArguments(args);
+            fragment = new ListaRecetasFragment();
+            
+    		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
+    		fragment.setArguments(args);
             break;
 
         case 1:
-
+        	
             fragment = new MyFragment();
             
     		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
@@ -197,11 +204,9 @@ public class MainActivity extends ActionBarActivity {
     		fragment.setArguments(args);
             break;
 
-        
         default:
-
             break;
-
+       
         }
 
 		// Insert the fragment by replacing any existing fragment

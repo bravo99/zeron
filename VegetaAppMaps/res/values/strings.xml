@@ -24,10 +24,10 @@
     <string name="vegetariano">Vegetariano</string>
     <string name="vegano">Vegano</string>
     <string name="content_camara">Boton para sacar una foto</string>
-   <string name="camara">Foto</string>
-   <string name="productos">Productos que se pueden encontrar</string>
-   <string name="iv_agregar">Boton para agregar productos a un local</string>
-   
+    <string name="camara">Foto</string>
+    <string name="productos">Productos que se pueden encontrar</string>
+    <string name="iv_agregar">Boton para agregar productos a un local</string>
+    <string name="categoria">Categoria </string>
    <string name="open_drawer">Drawer abierto</string>
    <string name="close_drawer">Drawer cerrado</string>
    <string name="buscar">Buscar</string>

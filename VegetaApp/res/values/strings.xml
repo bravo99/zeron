@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VegetaApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+     <string name="ib_restaurant">Boton de Restaurant</string>
+    <string name="ib_local">Boton de Local</string>
+    <string name="ib_geolocalize">Boton de Marker</string>
+    <string name="action_search_city">Buscar en lugar específico</string>
+    <string name="action_search_restaurant">Buscar por nombre de Restaurant</string>
+    <string name="action_search_local">Buscar por nombre de tienda</string>
+    <string name="action_search_producto">Buscar producto</string>
+    <string name="tv_agregarMarcador">Agregar un Marcador</string>
+    <string name="tv_restaurant">Nuevo Restaurant</string>
+    <string name="tv_local">Nuevo Local</string>
+    <string name="content_restaurant">ImageButon para agregar un marcador de Restaurant</string>
+    <string name="content_local">ImageButon para agregar un marcador de Local</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="nuevo_restaurant">Nombre Restaurant</string>
+    <string name="nuevo_local">Nombre Local</string>
+    <string name="descripcion">Descripción</string>
+    <string name="vegetariano">Vegetariano</string>
+    <string name="vegano">Vegano</string>
+    <string name="content_camara">Boton para sacar una foto</string>
+    <string name="camara">Foto</string>
+    <string name="productos">Productos que se pueden encontrar</string>
+    <string name="iv_agregar">Boton para agregar productos a un local</string>
+    <string name="listo">Listo</string>
+    <string name="precio">Precio: $</string>
+    <string name="categoria">Categoria</string>
+    <string name="preparacion">Preparación</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="comentarios">Comentarios</string>
+    
+   <string name="open_drawer">Drawer abierto</string>
+   <string name="close_drawer">Drawer cerrado</string>
+   <string name="buscar">Buscar</string>
+
+</resources>

@@ -12,6 +12,8 @@ public class MyFragment extends Fragment {
     public final static String KEY_TEXT = "key_text";
  
     private String mText;
+    
+    
  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
