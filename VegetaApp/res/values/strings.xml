@@ -34,6 +34,7 @@
     <string name="preparacion">Preparación</string>
     <string name="ingredientes">Ingredientes</string>
     <string name="comentarios">Comentarios</string>
+    <string name="ver">Ver</string>
     
    <string name="open_drawer">Drawer abierto</string>
    <string name="close_drawer">Drawer cerrado</string>

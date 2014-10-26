@@ -46,11 +46,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      
         <activity android:name="cl.zeron.vegetaapp.MapActivity"></activity>
         <activity android:name="cl.zeron.vegetaapp.FormRecetaActivity"></activity> 
         <activity android:name="cl.zeron.vegetaapp.RecetaResultListActivity"></activity>
         
-        
+        <!-- actividad para q se abra como dialog  add this android:theme="@android:style/Theme.Dialog" -->
         <meta-data
     		android:name="com.google.android.maps.v2.API_KEY"
     		android:value="AIzaSyCP5appFQqRAcnITN7twMSE8dIdxMerwRw"/> 

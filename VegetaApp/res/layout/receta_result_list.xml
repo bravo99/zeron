@@ -17,11 +17,12 @@
             android:textColor="@color/vegLetra"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher2" />
+        <com.parse.ParseImageView
+        android:id="@+id/iv_imag_receta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher2" />
+        
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,6 +32,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_action_group" />
 
             <TextView
@@ -70,7 +72,7 @@
                 android:layout_marginLeft="17dp"
                 android:layout_toRightOf="@+id/tiempo"
                 android:src="@drawable/ic_action_important" />
-            
+
             <TextView
                 android:id="@+id/valoracion"
                 android:layout_width="wrap_content"
@@ -81,7 +83,6 @@
                 android:layout_toRightOf="@+id/imageView4"
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-            
         </RelativeLayout>
 
         <TextView
@@ -126,28 +127,44 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/comentarios"
-            android:textColor="@color/vegLetraEsp"
             android:padding="10dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        <View
-    		android:layout_width="fill_parent"
-    		android:layout_height="1dp"
-    		android:layout_marginRight="5dp"
-    		android:layout_marginLeft="5dp"
-    		android:background="@color/vegLetraEsp"/>
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <ListView
-            android:id="@+id/listView1"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-        </ListView>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/comentarios"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/vegLetraEsp" />
+
+            <Button
+                android:id="@+id/ver_comentarios"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="36dp"
+                android:layout_toRightOf="@+id/textView6"
+                android:text="@string/ver"
+                android:textSize="20dp"
+                
+                />
+
+            <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/textView6"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/vegLetraEsp" />
+        </RelativeLayout>
+
+        
 
     </LinearLayout>
     

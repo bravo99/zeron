@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_toRightOf="@+id/icon"
+        android:layout_marginLeft="5dp"
         android:text="asdfghjkl"
         android:textColor="@color/vegLetra"
         android:textSize="25sp" />
