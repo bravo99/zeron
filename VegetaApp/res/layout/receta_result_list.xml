@@ -13,8 +13,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Large Text"
+            android:text="nomReceta"
             android:textColor="@color/vegLetra"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <com.parse.ParseImageView
@@ -108,14 +109,32 @@
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ingredientes"
-            android:textColor="@color/vegLetraEsp"
-            android:padding="10dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/ingredientes"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/vegLetraEsp" />
+
+            <Button
+                android:id="@+id/ver_alimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="32dp"
+                android:layout_toRightOf="@+id/textView5"
+                android:background="@drawable/button_ver"
+                android:text="@string/ver"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/vegLetra" />
+
+        </RelativeLayout>
         <View
     		android:layout_width="fill_parent"
     		android:layout_height="1dp"
@@ -134,38 +153,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/comentarios"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/vegLetraEsp" />
-
             <Button
                 android:id="@+id/ver_comentarios"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="36dp"
-                android:layout_toRightOf="@+id/textView6"
-                android:text="@string/ver"
-                android:textSize="20dp"
-                
-                />
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_ver"
+                android:text="@string/comentarios"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/vegLetra" />
 
-            <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/textView6"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@color/vegLetraEsp" />
+            
         </RelativeLayout>
 
+       <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:orientation="vertical" >
+            </LinearLayout> 
         
-
     </LinearLayout>
     
 

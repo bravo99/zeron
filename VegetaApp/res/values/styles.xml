@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -16,12 +16,10 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
     <style name="Theme_Dialog_Translucent" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-    
-    
-    
     
     
     <!-- the theme applied to the application or activity -->
@@ -30,6 +28,7 @@
         
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="actionModeSplitBackground">@color/vegColor</item>
     </style>
 
     <!-- ActionBar styles -->
@@ -38,6 +37,9 @@
        
         <!-- Support library compatibility -->
         <item name="background">@color/vegColor</item>
+        <item name="backgroundSplit">@color/vegColor</item>
     </style>
+    
+  
 
 </resources>

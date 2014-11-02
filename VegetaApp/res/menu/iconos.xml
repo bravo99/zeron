@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cl.zeron.vegetaapp="http://schemas.android.com/apk/res-auto" >
+    
+	   
+    <item
+        android:id="@+id/menu2_favoritas"
+        android:title="@string/menu_favoritas"
+		android:icon="@drawable/ic_action_favorite"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+    
+    <item
+        android:id="@+id/menu2_calificar"
+        android:title="@string/menu_calificar"
+		android:icon="@drawable/ic_action_important"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+     <item
+        android:id="@+id/menu2_comentar"
+        android:title="@string/menu_comentar"
+		android:icon="@drawable/ic_action_chat"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+     
+     <item
+        android:id="@+id/menu2_editar"
+        android:title="@string/menu_editar"
+		android:icon="@drawable/ic_action_edit"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+    
+    <item
+        android:id="@+id/menu2_eliminar"
+        android:title="@string/menu_eliminar"
+		android:icon="@drawable/ic_action_discard"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+    
+        
+</menu>

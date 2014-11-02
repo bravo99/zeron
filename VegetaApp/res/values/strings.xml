@@ -39,5 +39,12 @@
    <string name="open_drawer">Drawer abierto</string>
    <string name="close_drawer">Drawer cerrado</string>
    <string name="buscar">Buscar</string>
+   
+   <string name="menu_buscar">Buscar</string>
+   <string name="menu_favoritas">Favoritas</string>
+   <string name="menu_calificar">Calificar</string>
+   <string name="menu_comentar">Comentar</string>
+   <string name="menu_eliminar">Eliminar</string>
+   <string name="menu_editar">Editar</string>
 
 </resources>

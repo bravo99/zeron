@@ -148,7 +148,7 @@ com.google.android.gms.location.LocationListener {
 			}
 		}
 		else{
-			Toast.makeText(getActivity(), "Los servicios De Google Play Services no están Listos", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Los servicios De Google Play Services no estï¿½n Listos", Toast.LENGTH_SHORT).show();
 		}
 		
 		
@@ -328,7 +328,7 @@ com.google.android.gms.location.LocationListener {
 	protected void botonGeolocalize() {
 		Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
     	if(myLoc == null){
-    		Toast.makeText(getActivity(), "Por favor intentelo nuevamente después que su posición aparezca",Toast.LENGTH_SHORT).show();
+    		Toast.makeText(getActivity(), "Por favor intentelo nuevamente despuÃ©s que su posiciÃ³n aparezca",Toast.LENGTH_SHORT).show();
     		return;
     	}
     	mostrarDialogMarker();
@@ -457,7 +457,7 @@ com.google.android.gms.location.LocationListener {
 				// Si los campos no estan vacios, se guarda el registro en la base de datos.
 				Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	        	if(myLoc == null){
-	        		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	        		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	        		return;
 	        	}
 	        	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -554,7 +554,7 @@ com.google.android.gms.location.LocationListener {
 				mostrarDialogAlimento();
 			}
 		});
-		// Comentado ya que aun no está la variable global globalClass
+		// Comentado ya que aun no estï¿½ la variable global globalClass
 		((Button) dialogLocal.findViewById(R.id.aceptar)).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -574,10 +574,10 @@ com.google.android.gms.location.LocationListener {
 						return;
 					}
 				}
-				// Si los campos están rellenos se procede a guardar en la base de datos
+				// Si los campos estï¿½n rellenos se procede a guardar en la base de datos
 				Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	        	if(myLoc == null){
-	        		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	        		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	        		return;
 	        	}
 	        	final ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -624,7 +624,7 @@ com.google.android.gms.location.LocationListener {
 										String idObj = list.get(0).getObjectId();
 										ArrayList<ProductoPrecio> itemsProductos;
 										itemsProductos = globalClass.getLista();
-										// Ya se encontró el Id del objeto creado.
+										// Ya se encontrï¿½ el Id del objeto creado.
 										if(itemsProductos!=null){
 											for (ProductoPrecio prod : itemsProductos){
 												ParseObject saveAlimentoLocal = new ParseObject("AlimentoLocal");
@@ -813,7 +813,7 @@ com.google.android.gms.location.LocationListener {
 			ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
 			Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	    	if(myLoc == null){
-	    		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	    		return;
 	    	}
 	    	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -848,7 +848,7 @@ com.google.android.gms.location.LocationListener {
 			ParseQuery<ParseObject> query = ParseQuery.getQuery("Local");
 			Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	    	if(myLoc == null){
-	    		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	    		return;
 	    	}
 	    	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -899,7 +899,7 @@ com.google.android.gms.location.LocationListener {
 				icon.setImageResource(R.drawable.local);
 			}
 			else{
-				Toast.makeText(getActivity(), "No se encontró el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "No se encontrï¿½ el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
 				return null;
 			}
 			
@@ -922,7 +922,7 @@ com.google.android.gms.location.LocationListener {
 				query = ParseQuery.getQuery("Local");
 			}
 			else{
-				Toast.makeText(getActivity(), "No se encontró el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "No se encontrï¿½ el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
 				return null;
 			}
 			try {

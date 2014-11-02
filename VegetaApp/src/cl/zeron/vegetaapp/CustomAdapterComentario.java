@@ -4,15 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 public class CustomAdapterComentario extends ParseQueryAdapter<ParseObject> {
-	 
-	   
-		public CustomAdapterComentario(Context context,final ParseObject receta) {
+	  
+	    
+		public CustomAdapterComentario(final Context context,final ParseObject receta) {
 			
 			// Use the QueryFactory to construct a PQA that will only show
 			// Todos marked as high-pri
@@ -21,30 +23,52 @@ public class CustomAdapterComentario extends ParseQueryAdapter<ParseObject> {
 				public ParseQuery create() {
 					ParseQuery query = new ParseQuery("ComentarioReceta");
 					query.whereEqualTo("receta",receta);
+					try {
+						if(query.count() == 0){
+							
+							
+                            Toast.makeText(context, "Aun no existen comentarios ", Toast.LENGTH_SHORT).show();
+                            
+						}
+						
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+					
 					return query;
 				}
 			});
 			
 			
+			
 		}
 		
-
+		
 		// Customize the layout by overriding getItemView
 
 		
+		
+		
+		
 		@Override
 		public View getItemView(final ParseObject object, View v, ViewGroup parent) {
+			
+			
 			if (v == null) {
 				v = View.inflate(getContext(), R.layout.urgent_item_comentario, null);
 			}
 
 			super.getItemView(object, v, parent);
-
+            
+			
+			
 			// Add the username
 			TextView nombreTextView = (TextView) v.findViewById(R.id.user);
 			String nombre_user;
 			try {
 				nombre_user = object.getParseObject("usuario").fetchIfNeeded().getString("username");
+				
 				nombreTextView.setText(nombre_user);
 			} catch (ParseException e) {
 				
@@ -56,9 +80,14 @@ public class CustomAdapterComentario extends ParseQueryAdapter<ParseObject> {
 			TextView postTextView = (TextView)v.findViewById(R.id.comentario);
 			postTextView.setText(object.getString("post"));
 			
-					
+			
 			return v;
 		}
+
+		
+
+	
+		
 		
 
 }

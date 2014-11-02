@@ -26,6 +26,7 @@
         android:layout_marginRight="18dp"
         android:layout_toRightOf="@+id/user"
         android:text="asdasdadsasdasdasdasdasdasdadsasdasdasdasdadsadsasdasdaasdad"
+        android:textColor="@android:color/black"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

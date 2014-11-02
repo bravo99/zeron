@@ -10,8 +10,12 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements OnQueryTextListener, OnActionExpandListener {
 
 	private DrawerLayout drawerLayout;
 	private ListView navList;
@@ -35,7 +39,9 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity_drawer);
-		 Parse.initialize(this, "u9VdDovJEB22hYLgjjGm6hjaKH08dzuwhPq4dWGc", "gtDf7cQQEoGJrp89xgZfazpgYfnAyq2OJFBBuumK");
+		
+		Parse.enableLocalDatastore(this);
+		Parse.initialize(this, "u9VdDovJEB22hYLgjjGm6hjaKH08dzuwhPq4dWGc", "gtDf7cQQEoGJrp89xgZfazpgYfnAyq2OJFBBuumK");
 		 
 		 Fragment fragment = new ListaRecetasFragment();
 		 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -126,8 +132,18 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main2, menu);
-		return true;
+		//getMenuInflater().inflate(R.menu.main2, menu);
+        getMenuInflater().inflate(R.menu.vistabusqueda, menu);
+	    
+	    MenuItem searchItem = menu.findItem(R.id.menu3_buscar);
+
+	    SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+	    searchView.setOnQueryTextListener(this);
+	    
+	    MenuItemCompat.setOnActionExpandListener(searchItem, this);
+	    
+	    return super.onCreateOptionsMenu(menu);
+		
 	}
 
 	/*
@@ -137,8 +153,8 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// If the nav drawer is open, hide action items related to the content
 		// view
-		boolean drawerOpen = drawerLayout.isDrawerOpen(navList);
-		menu.findItem(R.id.action_search).setVisible(!drawerOpen);
+		//boolean drawerOpen = drawerLayout.isDrawerOpen(navList);
+		//menu.findItem(R.id.action_search).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -171,12 +187,12 @@ public class MainActivity extends ActionBarActivity {
 		
 		switch (position) {
 
-        case 0:
+        case 0: //Recetas online
              fragment = new ListaRecetasFragment();
             
             break;
 
-        case 1:
+        case 1://Alimentos
         	Toast.makeText(this, "asdda", Toast.LENGTH_LONG).show();
             fragment = new MyFragment();
             
@@ -188,12 +204,10 @@ public class MainActivity extends ActionBarActivity {
         	fragment = new FragmentMapa();
             break;
 
-        case 3:
+        case 3: //favoritas
 
-            fragment = new MyFragment();
+            fragment = new ListaRecetasFavFragment();
             
-    		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
-    		fragment.setArguments(args);
             break;
 
         default:
@@ -212,5 +226,30 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setTitle(mTitle);
 		drawerLayout.closeDrawer(navList);
 	}
+
+	public boolean onQueryTextChange(String arg0) {
+		
+		return false;
+	}
+	
+	public boolean onQueryTextSubmit(String arg0) {
+		
+		return false;
+	}
+	
+	
+	
+	
+	
+	public boolean onMenuItemActionCollapse(MenuItem arg0) {
+		Toast.makeText(getApplicationContext(), "COLLAPSE", Toast.LENGTH_SHORT).show();
+		return true;
+	}
+	
+	public boolean onMenuItemActionExpand(MenuItem arg0) {
+		Toast.makeText(getApplicationContext(), "EXPAND", Toast.LENGTH_SHORT).show();
+		return true;
+	}
+	
 
 }
