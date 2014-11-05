@@ -35,12 +35,22 @@
     <string name="ingredientes">Ingredientes</string>
     <string name="comentarios">Comentarios</string>
     <string name="ver">Ver</string>
+    <string name="emptyList">Sin contenido que mostrar</string>
+    <string name="informacion">Información</string>
+    <string name="agregue">Agregue su comentario</string>
+    <string name="cargando">Cargando…</string>
+    <string name="titulo_receta">Título Receta</string>
+    <string name="personas">Personas</string>
+    <string name="tiempo">Tiempo [min]</string>
+    <string name="guardar">Guardar</string>
+    <string name="prepa">Preparación…\nEscriba los pasos con un salto de linea</string>
     
    <string name="open_drawer">Drawer abierto</string>
    <string name="close_drawer">Drawer cerrado</string>
    <string name="buscar">Buscar</string>
    
    <string name="menu_buscar">Buscar</string>
+   <string name="menu_agregar">Agregar</string>
    <string name="menu_favoritas">Favoritas</string>
    <string name="menu_calificar">Calificar</string>
    <string name="menu_comentar">Comentar</string>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   
+    android:padding="2dip" >
+    
+	<TextView 
+	     android:text="Receta"
+         android:id="@+id/comentario_dialog"
+         android:textSize="24dp" 
+         android:layout_marginTop="10dp"
+         android:layout_width="match_parent" 
+         android:layout_height="wrap_content" 
+         android:layout_gravity="center"/>
+
+	<EditText
+	    android:id="@+id/coment_dialog_edit"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:ems="10"
+	    android:inputType="textMultiLine"
+	    android:layout_margin="5dip" 
+	    android:hint="@string/agregue" >
+		
+	    <requestFocus />
+	</EditText>
+	
+	<Button android:id="@+id/comentario_dialog_button" 
+         android:layout_height="wrap_content" 
+         android:text="@string/aceptar"  
+         android:focusable="false"
+         android:layout_margin="5dip" 
+         android:textColor="@color/vegLetra"
+         android:textSize="20dip" 
+         android:background="@drawable/button_ver"
+         android:layout_width="fill_parent" />
+	
+</LinearLayout>

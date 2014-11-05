@@ -53,9 +53,10 @@ public class ListaRecetasFavFragment extends Fragment{
     	if(v != null){
     		
     		lv_recetas = (ListView)v.findViewById(R.id.listcomentario);
-    	    
+    	    lv_recetas.setEmptyView(v.findViewById(R.id.emptyListView));
     		recetasAdapter = new CustomAdapterRecetasFav(act);
     		lv_recetas.setAdapter(recetasAdapter);
+    		recetasAdapter.loadObjects();
 		
     	}
     	return v;

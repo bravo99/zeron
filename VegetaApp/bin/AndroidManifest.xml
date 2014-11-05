@@ -53,7 +53,9 @@
         <activity android:name="cl.zeron.vegetaapp.FormRecetaActivity"></activity> 
         <activity android:name="cl.zeron.vegetaapp.ListAlimentoActivity"></activity>
         <activity android:name="cl.zeron.vegetaapp.ListComentarioActivity"></activity>
-         
+        <activity android:name="cl.zeron.vegetaapp.AlimentoResultListActivity"></activity> 
+        <activity android:name="cl.zeron.vegetaapp.RecetaActivity"></activity>
+        
         <activity
 	        android:name="cl.zeron.vegetaapp.RecetaResultListActivity"
 	        android:parentActivityName="cl.zeron.vegetaapp.MainActivity"

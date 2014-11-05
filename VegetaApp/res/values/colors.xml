@@ -10,4 +10,6 @@
     <color name="vegColorp">#cfdca3</color>
     <color name="vegLetra">#676733</color>
     <color name="vegLetraEsp">#9aca36</color>
+    <color name="fondo">#e3edc0</color>
+    <color name="fondo2">#e9eddb</color>
 </resources>

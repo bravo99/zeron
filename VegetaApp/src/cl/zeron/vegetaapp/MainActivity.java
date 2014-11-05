@@ -21,10 +21,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity implements OnQueryTextListener, OnActionExpandListener {
-
+public class MainActivity extends ActionBarActivity {
+    static int contador = 0;
 	private DrawerLayout drawerLayout;
 	private ListView navList;
 	private CharSequence mTitle;
@@ -34,13 +35,18 @@ public class MainActivity extends ActionBarActivity implements OnQueryTextListen
 	private TypedArray NavIcons;
 	ListNavigationAdapter navAdapter;
 	private ActionBarDrawerToggle drawerToggle;
-
+    public String busqueda;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity_drawer);
 		
-		Parse.enableLocalDatastore(this);
+		if (contador == 0){
+			Parse.enableLocalDatastore(this);
+			contador+=1;
+		}
+		
 		Parse.initialize(this, "u9VdDovJEB22hYLgjjGm6hjaKH08dzuwhPq4dWGc", "gtDf7cQQEoGJrp89xgZfazpgYfnAyq2OJFBBuumK");
 		 
 		 Fragment fragment = new ListaRecetasFragment();
@@ -63,14 +69,7 @@ public class MainActivity extends ActionBarActivity implements OnQueryTextListen
 		
 		navAdapter = new ListNavigationAdapter(this, NavItms);
 		navList.setAdapter(navAdapter);
-		// Load an array of options names
-		//final String[] names = getResources().getStringArray(
-			//	R.array.nav_options);
-
-		// Set previous array as adapter of the list
-		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-			//	android.R.layout.simple_list_item_1, names);
-	  //	navList.setAdapter(adapter);
+		
 		navList.setOnItemClickListener(new DrawerItemClickListener());
 		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
 				R.drawable.ic_drawer, R.string.open_drawer,
@@ -131,16 +130,14 @@ public class MainActivity extends ActionBarActivity implements OnQueryTextListen
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main2, menu);
-        getMenuInflater().inflate(R.menu.vistabusqueda, menu);
-	    
-	    MenuItem searchItem = menu.findItem(R.id.menu3_buscar);
-
-	    SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-	    searchView.setOnQueryTextListener(this);
-	    
-	    MenuItemCompat.setOnActionExpandListener(searchItem, this);
+		
+   //     getMenuInflater().inflate(R.menu.vistabusqueda, menu);
+ //       MenuItem searchItem = menu.findItem(R.id.menu3_buscar);
+//
+//	    SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//	    searchView.setOnQueryTextListener(this);
+//	    
+//	    MenuItemCompat.setOnActionExpandListener(searchItem, this);
 	    
 	    return super.onCreateOptionsMenu(menu);
 		
@@ -227,29 +224,7 @@ public class MainActivity extends ActionBarActivity implements OnQueryTextListen
 		drawerLayout.closeDrawer(navList);
 	}
 
-	public boolean onQueryTextChange(String arg0) {
-		
-		return false;
-	}
 	
-	public boolean onQueryTextSubmit(String arg0) {
-		
-		return false;
-	}
-	
-	
-	
-	
-	
-	public boolean onMenuItemActionCollapse(MenuItem arg0) {
-		Toast.makeText(getApplicationContext(), "COLLAPSE", Toast.LENGTH_SHORT).show();
-		return true;
-	}
-	
-	public boolean onMenuItemActionExpand(MenuItem arg0) {
-		Toast.makeText(getApplicationContext(), "EXPAND", Toast.LENGTH_SHORT).show();
-		return true;
-	}
 	
 
 }

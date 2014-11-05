@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +18,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
@@ -41,12 +46,54 @@ public class CustomAdapterRecetas extends ParseQueryAdapter<ParseObject> {
 		
 	}
 	
+public CustomAdapterRecetas(final Activity activity,final String nombre, final String busqueda, final String busqueda2) {
+		
+		// Use the QueryFactory to construct a PQA that will only show
+		// Todos marked as high-pri
+		super(activity, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public ParseQuery create() {
+				
+				ParseQuery<ParseObject> nombreInicioUpper = ParseQuery.getQuery("Receta");
+				nombreInicioUpper.whereContains("nombre", busqueda);
+				
+				ParseQuery<ParseObject> nombre_N = ParseQuery.getQuery("Receta");
+				nombre_N.whereContains("nombre", nombre);
+				
+				ParseQuery<ParseObject> nombreLower = ParseQuery.getQuery("Receta");
+				nombreLower.whereContains("nombre", busqueda2);
+				
+				List<ParseQuery<ParseObject>> queries = new ArrayList<ParseQuery<ParseObject>>();
+				queries.add(nombreInicioUpper);
+				queries.add(nombre_N);
+				queries.add(nombreLower);
+				
+				ParseQuery<ParseObject> mainquery = ParseQuery.or(queries);
+				try {
+					if(mainquery.count()==0){
+						Toast.makeText(activity.getApplicationContext(),
+								"Busqueda no exitosa", Toast.LENGTH_SHORT).show();
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+								
+				return mainquery;
+			}
+		});
+		this.act=activity;
+		
+	}
+	
+	
 
 	// Customize the layout by overriding getItemView
 
 	
 	@Override
 	public View getItemView(final ParseObject object, View v, ViewGroup parent) {
+		final Bundle bundle = new Bundle();
+		
 		if (v == null) {
 			v = View.inflate(getContext(), R.layout.urgent_item1, null);
 		}
@@ -62,8 +109,7 @@ public class CustomAdapterRecetas extends ParseQueryAdapter<ParseObject> {
 			recetaImage.setParseFile(imageFile);
 			recetaImage.loadInBackground();
 		}
-		
-		
+			
 		
         
 		// Add the title view
@@ -92,7 +138,7 @@ public class CustomAdapterRecetas extends ParseQueryAdapter<ParseObject> {
 				
 				String ruta = guardarImagen( act, "imagen", imBitmap);
 
-				Bundle bundle = new Bundle();
+				
 				bundle.putString("ID",object.getObjectId());
 				bundle.putString("TITULO", object.getString("nombre"));
 				bundle.putString("PREPARACION", object.getString("preparacion"));
@@ -100,7 +146,8 @@ public class CustomAdapterRecetas extends ParseQueryAdapter<ParseObject> {
 				bundle.putString("VALORACION",object.getString("valoracion"));
 				bundle.putString("PERSONAS", object.getString("personas"));
 				bundle.putString("IMAG", ruta);
-				
+				bundle.putString("INGREDIENTES", object.getString("ingredientes"));
+			    bundle.putString("CLAVE", "normal");
 				
 				Intent i = new Intent(act, RecetaResultListActivity.class);
 				i.putExtra("ParentClassName",act.getClass().getName());

@@ -1,5 +1,6 @@
 package cl.zeron.vegetaapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import com.parse.ParseQueryAdapter;
 public class CustomAdapterComentario extends ParseQueryAdapter<ParseObject> {
 	  
 	    
-		public CustomAdapterComentario(final Context context,final ParseObject receta) {
+		public CustomAdapterComentario(final Activity a,final Context context,final ParseObject receta) {
 			
 			// Use the QueryFactory to construct a PQA that will only show
 			// Todos marked as high-pri
@@ -26,16 +27,15 @@ public class CustomAdapterComentario extends ParseQueryAdapter<ParseObject> {
 					try {
 						if(query.count() == 0){
 							
-							
                             Toast.makeText(context, "Aun no existen comentarios ", Toast.LENGTH_SHORT).show();
-                            
+                            a.onBackPressed();
 						}
 						
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}	
-					
+					query.orderByDescending("updatedAt");
 					return query;
 				}
 			});
@@ -67,7 +67,7 @@ public class CustomAdapterComentario extends ParseQueryAdapter<ParseObject> {
 			TextView nombreTextView = (TextView) v.findViewById(R.id.user);
 			String nombre_user;
 			try {
-				nombre_user = object.getParseObject("usuario").fetchIfNeeded().getString("username");
+				nombre_user = object.getParseObject("usuario").fetchIfNeeded().getString("name");
 				
 				nombreTextView.setText(nombre_user);
 			} catch (ParseException e) {

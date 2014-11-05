@@ -1,7 +1,19 @@
 package cl.zeron.vegetaapp;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.parse.ParseException;
@@ -12,12 +24,13 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
-	  	    
-		public CustomAdapterAlimento(final Context context,final ParseObject receta) {
+	TextView titleTextView ;  
+	Activity act;
+		public CustomAdapterAlimento(Activity activity,final ParseObject receta) {
 			
 			// Use the QueryFactory to construct a PQA that will only show
 			// Todos marked as high-pri
-			super( context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+			super( activity, new ParseQueryAdapter.QueryFactory<ParseObject>() {
 				@SuppressWarnings({ "unchecked", "rawtypes" })
 				public ParseQuery create() {
 					ParseQuery query = new ParseQuery("AlimentoReceta");
@@ -27,7 +40,7 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 				}
 			});
 			
-			
+			this.act=activity;
 			
 		}
 		
@@ -51,7 +64,7 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 			
 			
 			// Add and download the image
-			final ParseImageView recetaImage = (ParseImageView) v.findViewById(R.id.icon_ali);
+			final ParseImageView alimentoImage = (ParseImageView) v.findViewById(R.id.icon_ali);
 			ParseFile imageFile = null;
 			try {
 				imageFile = object.getParseObject("ingrediente").fetchIfNeeded().getParseFile("imagen");
@@ -62,12 +75,12 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 			
 					
 			if (imageFile != null) {
-				recetaImage.setParseFile(imageFile);
-				recetaImage.loadInBackground();
+				alimentoImage.setParseFile(imageFile);
+				alimentoImage.loadInBackground();
 			}
 	        
 			// Add the title view
-			TextView titleTextView = (TextView) v.findViewById(R.id.nombre_ali);
+			titleTextView= (TextView) v.findViewById(R.id.nombre_ali);
 			try {
 				titleTextView.setText(object.getParseObject("ingrediente").fetchIfNeeded()
 					      .getString("nombre"));
@@ -76,10 +89,52 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 				e.printStackTrace();
 			}
 			
+			v.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					Bitmap imBitmap = ((BitmapDrawable) alimentoImage.getDrawable()).getBitmap();
+					
+					String ruta = guardarImagen( getContext(), "imagen", imBitmap);
+					Bundle bundle = new Bundle();
+					bundle.putString("NOMBRE",titleTextView.getText().toString());
+					bundle.putString("IMAG", ruta);
+					try {
+						bundle.putString("INFO",object.getParseObject("ingrediente").fetchIfNeeded()
+								.getString("descripcion"));
+					} catch (ParseException e) {
+					
+						e.printStackTrace();
+					}
+					
+					Intent i = new Intent(act, AlimentoResultListActivity.class);
+					i.putExtras(bundle);
+					act.startActivity(i);
+				}
+			});
+			
 			return v;
 		}
 
-		
+		private String guardarImagen (Context context, String nombre, Bitmap imagen){
+		    ContextWrapper cw = new ContextWrapper(context);
+		    File dirImages = cw.getDir("Imagenes", Context.MODE_PRIVATE);
+		    
+			File myPath = new File(dirImages, nombre + ".png");
+		     
+		    FileOutputStream fos = null;
+		    try{
+		        fos = new FileOutputStream(myPath);
+		        imagen.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+		        fos.flush();
+		    }catch (FileNotFoundException ex){
+		        ex.printStackTrace();
+		    }catch (IOException ex){
+		        ex.printStackTrace();
+		    }
+		    return myPath.getAbsolutePath();
+		}	
 
 
 }

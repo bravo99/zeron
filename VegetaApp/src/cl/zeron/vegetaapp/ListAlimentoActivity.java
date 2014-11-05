@@ -33,7 +33,7 @@ public class ListAlimentoActivity extends ActionBarActivity{
 				if (e == null) {
 				 
 	 
-					adapter = new CustomAdapterAlimento(getApplicationContext(),object); 
+					adapter = new CustomAdapterAlimento(ListAlimentoActivity.this,object); 
 					
 					listAlimentos.setAdapter(adapter);	 	
 				     if (listAlimentos != null){

@@ -101,6 +101,8 @@ public class CustomAdapterRecetasFav extends ParseQueryAdapter<ParseObject> {
 					bundle.putString("VALORACION",object.getString("valoracion"));
 					bundle.putString("PERSONAS", object.getString("personas"));
 					bundle.putString("IMAG", ruta);
+					bundle.putString("INGREDIENTES", object.getString("ingredientes"));
+					bundle.putString("CLAVE", "fav");
 					
 					
 					Intent i = new Intent(act, RecetaResultListActivity.class);

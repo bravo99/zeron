@@ -5,6 +5,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ public class ListComentarioActivity extends ActionBarActivity{
 	Bundle bundle;
 	ListView lv_comentario;
 	TextView algo;
+	Activity activity;
 	
 	CustomAdapterComentario adapter;
 	
@@ -26,6 +28,7 @@ public class ListComentarioActivity extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list);
+		activity =ListComentarioActivity.this;
 		bundle=getIntent().getExtras();
 		lv_comentario = (ListView)findViewById(R.id.listcomentario);
 		
@@ -37,7 +40,7 @@ public class ListComentarioActivity extends ActionBarActivity{
 			if (e == null) {
 			 
  
-				adapter = new CustomAdapterComentario(getApplicationContext(),object); 
+				adapter = new CustomAdapterComentario(activity,getApplicationContext(),object); 
 				
 				lv_comentario.setAdapter(adapter);	 	
 			     if (lv_comentario != null){

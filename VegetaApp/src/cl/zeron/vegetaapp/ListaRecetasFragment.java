@@ -1,10 +1,19 @@
 package cl.zeron.vegetaapp;
 
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.MenuItemCompat.OnActionExpandListener;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,8 +21,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class ListaRecetasFragment extends Fragment {
+public class ListaRecetasFragment extends Fragment implements OnQueryTextListener, OnActionExpandListener {
 	
 	final String[] categorias = {"Bocadillo","Ensalada","Pastas","Postre","Principal","Sopa"};
 	private Spinner sp_categoria;
@@ -35,6 +45,7 @@ public class ListaRecetasFragment extends Fragment {
     public void onAttach(Activity activity) {
     	super.onAttach(activity);
     	this.act=activity;
+    	
         try{
             mCallback = (FragmentIterationListener) activity;
         }catch(ClassCastException ex){
@@ -50,17 +61,21 @@ public class ListaRecetasFragment extends Fragment {
         adaptadorSpinner =new ArrayAdapter<String>(act,android.R.layout.simple_spinner_item, categorias);
 		adaptadorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			
-		
+		setHasOptionsMenu(true);
     }
-     
+    
+  
+   
     //El Fragment va a cargar su layout, el cual debemos especificar
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
     	View v = inflater.inflate(R.layout.lista_receta_fragment, container, false);
-    	if(v != null){
+    	
+         if(v != null){
     		sp_categoria = (Spinner)v.findViewById(R.id.spinner_categoria_receta);
     		lv_recetas = (ListView)v.findViewById(R.id.lv_receta);
+    		lv_recetas.setEmptyView(v.findViewById(R.id.listvacia));
     		sp_categoria.setAdapter(adaptadorSpinner);
     		    		
     		if(recetasAdapter==null){
@@ -88,13 +103,38 @@ public class ListaRecetasFragment extends Fragment {
 				}
     			
 			});
-    		
-    		
-					
-					
-    	}
+     	}
+        
     	return v;
     }
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Pass the event to ActionBarDrawerToggle, if it returns
+		// true, then it has handled the app icon touch event
+    	switch (item.getItemId()) {
+	        case R.id.menu3_add:
+	        	Intent intent = new Intent(act.getApplicationContext(), RecetaActivity.class);
+	        	startActivity(intent);
+	        	
+	        	Toast.makeText(getActivity(), "adsasdasada", Toast.LENGTH_SHORT).show();
+	            return true;
+	            
+	        
+	            
+	        default:
+	            return super.onOptionsItemSelected(item);
+        }
+	}
+    
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+                
+    	act.getMenuInflater().inflate(R.menu.vistabusqueda, menu);
+
+	    super.onCreateOptionsMenu(menu, inflater);
+    }
+    
      
     //La vista de layout ha sido creada y ya está disponible
     @Override
@@ -123,6 +163,42 @@ public class ListaRecetasFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+    public boolean onMenuItemActionCollapse(MenuItem arg0) {
+		
+		return true;
+	}
+	
+	public boolean onMenuItemActionExpand(MenuItem arg0) {
+		
+		return true;
+	}
+
+	@Override
+	public boolean onQueryTextChange(String arg0) {
+		//Toast.makeText(act.getApplicationContext(), arg0, Toast.LENGTH_SHORT).show();
+		return false;
+	}
+
+	@Override
+	public boolean onQueryTextSubmit(String busqueda) {
+		String busquedaUC, busquedatodoLC;
+		
+		busquedaUC = (busqueda.substring(0, 1).toUpperCase()).concat(
+				(busqueda.substring(1, busqueda.length())).toLowerCase());
+		
+		busquedatodoLC = (busqueda.substring(0,busqueda.length())).toLowerCase();
+		
+		Toast.makeText(act.getApplicationContext(), "Buscando: "+ busqueda, Toast.LENGTH_SHORT).show();
+		recetasAdapter = new CustomAdapterRecetas(act,busqueda,busquedaUC,busquedatodoLC);
+		lv_recetas.setAdapter(recetasAdapter);
+		
+		recetasAdapter.loadObjects();
+		act.onBackPressed();
+		return false;
+		
+		
+	}
     
     
    	
