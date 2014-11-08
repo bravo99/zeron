@@ -13,7 +13,6 @@
         android:id="@+id/menu3_add"
         android:title="@string/menu_agregar"
         android:icon="@drawable/ic_action_new"
-        cl.zeron.vegetaapp:showAsAction="ifRoom|collapseActionView"
-        cl.zeron.vegetaapp:actionViewClass="android.support.v7.widget.SearchView"/>
+        cl.zeron.vegetaapp:showAsAction="always"/>
     
 </menu>

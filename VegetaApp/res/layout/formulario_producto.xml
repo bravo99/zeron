@@ -11,23 +11,46 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/tv_local"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/black"/>
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="@color/vegLetra"
+	    android:textStyle="bold"
+	    android:layout_centerHorizontal="true"/>
+    <ImageButton 
+        android:id="@+id/camara"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button_ver"
+        android:src="@drawable/ic_action_camera"
+        android:contentDescription="@string/content_camara"
+        android:layout_alignParentRight="true"/>
+    
     <View
         android:id="@+id/divider"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="5dp"
-        android:layout_marginBottom="3dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/dialog_divider"
-        android:layout_below="@id/tv_titulo" />
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/camara" />
     
     <TextView 
         android:id="@+id/tv_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nuevo_local"
-        android:layout_below="@id/divider"/>
+        android:layout_below="@id/divider"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/tv_nombre" />
 
     
     <EditText 
@@ -35,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:layout_below="@id/tv_nombre"
+        android:layout_below="@id/divider2"
 	    android:layout_marginBottom="10dp">
         
         <requestFocus />
@@ -46,13 +69,26 @@
         android:layout_below="@id/et_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/descripcion"/>
+        android:text="@string/descripcion"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/tv_descripcion" />
+    
     <EditText 
         android:id="@+id/et_descripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@id/tv_descripcion"
+        android:inputType="textMultiLine"
+        android:layout_below="@id/divider3"
         android:layout_marginBottom="10dp"/>
     
 	<TextView 
@@ -60,13 +96,25 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/et_descripcion"
-	    android:text="@string/productos"/>
+	    android:text="@string/productos"
+	    android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+	<View
+        android:id="@+id/divider4"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/tv_producto" />
 
     <ListView
         android:id="@+id/lv_producto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_producto" >
+        android:layout_height="120dp"
+        android:layout_below="@id/divider4" >
     </ListView>
     
     <ImageButton 
@@ -78,42 +126,27 @@
         android:layout_below="@id/lv_producto"
         android:layout_alignParentRight="true"/>
     
-    <LinearLayout 
-        android:id="@+id/ll_camara"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/ib_agregar"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="5dp">
-        
-	    <ImageButton 
-	        android:id="@+id/camara"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:src="@drawable/camara"
-	        android:contentDescription="@string/content_camara"/>
-	    <TextView 
-	        android:id="@+id/tv_camara"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/camara"
-	        android:layout_gravity="center_vertical"/>
-    </LinearLayout>
+    <com.parse.ParseImageView
+            android:id="@+id/imagen_parse"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/ib_agregar"
+            android:visibility="invisible"/>
     
     <LinearLayout
         android:id="@+id/botonera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:orientation="horizontal"
-        android:layout_below="@id/ll_camara">
+        android:layout_below="@id/ib_agregar">
 
         <Button
             android:id="@+id/aceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/aceptar"
             android:textColor="@android:color/white" />
 
@@ -123,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/cancelar"
             android:textColor="@android:color/white" />
     </LinearLayout>

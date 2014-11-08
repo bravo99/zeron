@@ -6,6 +6,7 @@ import com.parse.ParseException;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import android.annotation.TargetApi;
@@ -45,6 +46,7 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	private Dialog rankDialog;
 	private Dialog ComentarioDialog;
 	protected Dialog ElimDialog;
+	private ParseUser currentUser;
 	
 	
 
@@ -79,7 +81,7 @@ public class RecetaResultListActivity extends ActionBarActivity{
 		valoracion = (TextView)findViewById(R.id.valoracion);
 		valoracion.setText("5/"+bundle.getString("VALORACION"));
 		
-		
+		currentUser = ParseUser.getCurrentUser();
 		verComentarios = (Button)findViewById(R.id.ver_comentarios);
 		verComentarios.setOnClickListener(new OnClickListener() {
 		
@@ -139,16 +141,16 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	    	public void done(ParseObject object, ParseException e) {
 	    		if (e == null) {
 	    			object.put("ingredientes", ingred.getText().toString());
-	    			object.saveInBackground();
-	    			object.pinInBackground(new SaveCallback() {
+	    			object.pinInBackground(null);
+	    			object.saveInBackground(new SaveCallback() {
+						
 						@Override
 						public void done(ParseException arg0) {
-							if (arg0== null){
-								Toast.makeText(getApplicationContext(),
-											"Nueva receta añadida a Favoritas", Toast.LENGTH_SHORT).show();
-							}
-								
+							Toast.makeText(getApplicationContext(),
+									"Nueva receta añadida a Favoritas", Toast.LENGTH_SHORT).show();
+							
 					}});
+	    			
 	    			
 	    		} 
 	    	}});
@@ -157,7 +159,10 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	        
 	        //CALIFICAR
 	        case R.id.menu2_calificar:
-	        	
+	        	if(currentUser == null){
+	        		Toast.makeText(RecetaResultListActivity.this, "Debe estar registrado para Calificar", Toast.LENGTH_SHORT).show();
+	        		return false;
+	        	}
 	        	rankDialog = new Dialog(this,R.style.FullHeightDialog);
 	            rankDialog.setContentView(R.layout.rank_dialog);
 	            rankDialog.setCancelable(true);
@@ -212,7 +217,10 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	            
 	        //COMENTAR    
 	        case R.id.menu2_comentar:
-	        	
+	        	if(currentUser == null){
+	        		Toast.makeText(RecetaResultListActivity.this, "Debe estar registrado para Comentar", Toast.LENGTH_SHORT).show();
+	        		return false;
+	        	}
 	        	ComentarioDialog = new Dialog(this,R.style.FullHeightDialog);
 	            ComentarioDialog.setContentView(R.layout.comentario_dialog);
 	            ComentarioDialog.setCancelable(true);
@@ -244,21 +252,17 @@ public class RecetaResultListActivity extends ActionBarActivity{
 		         	    			newComentario.put("post",editComent.getText().toString());
 		         	    			
 		         	    			//AGARRAR UN USUARIO MIENTRAS
-		         	    			ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
-		    	         	    	query.getInBackground("rENqlW6Atd", new GetCallback<ParseObject>() {
-		    	         	    	public void done(ParseObject object, ParseException e) {
-		    	         	    		if (e == null) {
-		    	         	    			newComentario.put("usuario",object);
-		    	         	    			newComentario.saveInBackground(new SaveCallback() {
-		    									
-		    									@Override
-		    									public void done(ParseException arg0) {
-		    										Toast.makeText(getApplicationContext(),
-		    												"Comentario añadido", Toast.LENGTH_SHORT).show();
-		    										
-		    									}});
-		    	         	    		}
-		    	        	    	}});
+		         	    			
+		         	    			
+    	         	    			newComentario.put("usuario",currentUser);
+    	         	    			newComentario.saveInBackground(new SaveCallback() {
+    									
+    									@Override
+    									public void done(ParseException arg0) {
+    										Toast.makeText(getApplicationContext(),
+    												"Comentario añadido", Toast.LENGTH_SHORT).show();
+    										
+    									}});
 		    	         	    	
 		    	         	    	ComentarioDialog.dismiss();
 	         	    			}
@@ -269,14 +273,17 @@ public class RecetaResultListActivity extends ActionBarActivity{
 					}});
 	            ComentarioDialog.show();
 	            
-	        	Toast.makeText(getApplicationContext(), "COMENTAR", Toast.LENGTH_SHORT).show();
 	            return true;
 	            
 	        //EDITAR    
-	        case R.id.menu2_editar:
+	        /*case R.id.menu2_editar:
+	        	if(currentUser == null){
+	        		Toast.makeText(RecetaResultListActivity.this, "Debe estar registrado para Editar", Toast.LENGTH_SHORT).show();
+	        		return false;
+	        	}
 	        	Toast.makeText(getApplicationContext(), "EDITAR", Toast.LENGTH_SHORT).show();
 	            return true;
-	            
+	            */
 	        //ELIMINAR    
 	        case R.id.menu2_eliminar:
 	        	 ElimDialog = new Dialog(this,R.style.FullHeightDialog);
@@ -304,17 +311,20 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	        	}
 	        	//ELIMINAR DESDE RECETA
 	        	else{
-	        		
-	        		final boolean login = true;
+	        		if(currentUser == null){
+		        		Toast.makeText(RecetaResultListActivity.this, "Debe estar registrado para Eliminar", Toast.LENGTH_SHORT).show();
+		        		return false;
+		        	}
 	        		//COMPROBAR LOGIN
-	        		if(login){
+	        		if(currentUser != null){
 	        			ParseQuery<ParseObject> queryElimOnLine = ParseQuery.getQuery("Receta");
 	        			queryElimOnLine.getInBackground(bundle.getString("ID"), new GetCallback<ParseObject>() {
 	        			public void done(final ParseObject object, ParseException e) {
 	        			     if (e == null) {
 	        			    	 
 	        			    	 //COMPROBAR SI ES EL CREADOR
-	        			    	 if(!login){
+	        			    	 ParseUser creador = object.getParseUser("creado_por");
+	        			    	 if(creador.getObjectId().equals(currentUser.getObjectId())){
 	        			    		
         					         ElimDialog.show();
         					         

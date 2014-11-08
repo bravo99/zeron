@@ -3,6 +3,7 @@ package cl.zeron.vegetaapp;
 import java.util.ArrayList;
 
 import com.parse.Parse;
+import com.parse.ParseUser;
 
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -36,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
 	ListNavigationAdapter navAdapter;
 	private ActionBarDrawerToggle drawerToggle;
     public String busqueda;
+    private String frag ="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	
@@ -47,9 +49,20 @@ public class MainActivity extends ActionBarActivity {
 			contador+=1;
 		}
 		
+		if(getIntent().hasExtra("fragment")){
+			frag = getIntent().getStringExtra("fragment");
+		}
+		
+		
 		Parse.initialize(this, "u9VdDovJEB22hYLgjjGm6hjaKH08dzuwhPq4dWGc", "gtDf7cQQEoGJrp89xgZfazpgYfnAyq2OJFBBuumK");
+		Fragment fragment; 
+		if(frag.equals("mapa")){
+			 fragment = new FragmentMapa(); 
+		 }
+		else{
+			fragment = new ListaRecetasFragment();
+		}
 		 
-		 Fragment fragment = new ListaRecetasFragment();
 		 FragmentManager fragmentManager = getSupportFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, fragment).commit();
@@ -66,6 +79,12 @@ public class MainActivity extends ActionBarActivity {
 		NavItms.add(new ItemObject(titulos[1],NavIcons.getResourceId(1, -1) ) );
 		NavItms.add(new ItemObject(titulos[2],NavIcons.getResourceId(2, -1) ) );
 		NavItms.add(new ItemObject(titulos[3],NavIcons.getResourceId(3, -1) ) );
+		if(ParseUser.getCurrentUser() == null){
+			NavItms.add(new ItemObject(titulos[5],NavIcons.getResourceId(4, -1) ) );
+		}
+		else{
+			NavItms.add(new ItemObject(titulos[4],NavIcons.getResourceId(4, -1) ) );
+		}
 		
 		navAdapter = new ListNavigationAdapter(this, NavItms);
 		navList.setAdapter(navAdapter);
@@ -190,11 +209,8 @@ public class MainActivity extends ActionBarActivity {
             break;
 
         case 1://Alimentos
-        	Toast.makeText(this, "asdda", Toast.LENGTH_LONG).show();
-            fragment = new MyFragment();
-            
-    		args.putString(MyFragment.KEY_TEXT, mTitle.toString());
-    		fragment.setArguments(args);
+        	
+            fragment = new ListAlimentoFragment();
             break;
 
         case 2: // Mapas - Lugares
@@ -206,7 +222,11 @@ public class MainActivity extends ActionBarActivity {
             fragment = new ListaRecetasFavFragment();
             
             break;
-
+            
+        case 4:
+        	fragment = new FragmentEmpty();
+        	break;
+        	
         default:
         	//fragment = new ListaRecetasFragment();
             break;

@@ -98,7 +98,13 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 					
 					String ruta = guardarImagen( getContext(), "imagen", imBitmap);
 					Bundle bundle = new Bundle();
-					bundle.putString("NOMBRE",titleTextView.getText().toString());
+					try {
+						bundle.putString("NOMBRE",object.getParseObject("ingrediente").fetchIfNeeded()
+							      .getString("nombre"));
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					bundle.putString("IMAG", ruta);
 					try {
 						bundle.putString("INFO",object.getParseObject("ingrediente").fetchIfNeeded()

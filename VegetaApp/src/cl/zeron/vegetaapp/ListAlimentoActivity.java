@@ -21,9 +21,9 @@ public class ListAlimentoActivity extends ActionBarActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.list);
+		setContentView(R.layout.list_alimento);
 		bundle = getIntent().getExtras();
-		listAlimentos = (ListView)findViewById(R.id.listcomentario);
+		listAlimentos = (ListView)findViewById(R.id.listalim);
 		 
 		startLoading();
 		 
@@ -34,7 +34,7 @@ public class ListAlimentoActivity extends ActionBarActivity{
 				 
 	 
 					adapter = new CustomAdapterAlimento(ListAlimentoActivity.this,object); 
-					
+					listAlimentos.setEmptyView(findViewById(R.id.listvacia));
 					listAlimentos.setAdapter(adapter);	 	
 				     if (listAlimentos != null){
 				    	stopLoading();

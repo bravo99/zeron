@@ -23,8 +23,9 @@
         android:id="@+id/nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="21sp"
-         />
+        android:textColor="@color/vegLetra"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 	    
     </LinearLayout>
     <LinearLayout 
@@ -41,7 +42,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textSize="21sp"
-	        android:text="@string/precio" />
+	        android:text="@string/precio"
+	        android:textColor="@color/vegLetraEsp" />
 	    
 	    
 	    <EditText 
@@ -63,9 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/aceptar"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/vegLetra" />
 
         <Button
             android:id="@+id/cancelar"
@@ -73,9 +75,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/cancelar"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/vegLetra" />
     </LinearLayout>
     
 

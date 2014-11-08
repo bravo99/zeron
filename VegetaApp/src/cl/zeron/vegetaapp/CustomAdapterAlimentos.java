@@ -1,6 +1,8 @@
 package cl.zeron.vegetaapp;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -26,10 +28,24 @@ public class CustomAdapterAlimentos extends ParseQueryAdapter<ParseObject> {
 	ArrayList<ProductoPrecio> lista = new ArrayList<ProductoPrecio>();
 	Dialog dialogPrecio; 
 	Dialog dialogLocal, dialogAlimento;
+	private GlobalClass globalClass;
+	private ListView lv_productos;
 	
+	public CustomAdapterAlimentos(Context context, ListView listView, Dialog dialogAlimento) {
+		super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public ParseQuery create() {
+				ParseQuery query = new ParseQuery("Alimento");
+				query.orderByAscending("nombre");
+				return query;
+			}
+		});
+		this.context = context;
+		this.dialogAlimento = dialogAlimento;
+		this.lv_productos = listView;
+		globalClass = (GlobalClass) context.getApplicationContext();
+	}
 	public CustomAdapterAlimentos(Context context, Dialog dialogLocal, Dialog dialogAlimento) {
-		// Use the QueryFactory to construct a PQA that will only show
-		// Todos marked as high-pri
 		super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public ParseQuery create() {
@@ -41,12 +57,16 @@ public class CustomAdapterAlimentos extends ParseQueryAdapter<ParseObject> {
 		this.context= context;
 		this.dialogLocal = dialogLocal;
 		this.dialogAlimento = dialogAlimento;
+		globalClass= (GlobalClass) context.getApplicationContext();
 	}
 	
 
 	// Customize the layout by overriding getItemView
 
 	
+	
+
+
 	@Override
 	public View getItemView(final ParseObject object, View v, ViewGroup parent) {
 		if (v == null) {
@@ -73,10 +93,16 @@ public class CustomAdapterAlimentos extends ParseQueryAdapter<ParseObject> {
 			@Override
 			public void onClick(View v) {
 				final ProductoPrecio prod = new ProductoPrecio();
+				if(globalClass.getLista() != null){
+					for(ProductoPrecio producto_alimento : globalClass.getLista()){
+						if(producto_alimento.getId().equals(object.getObjectId())){
+							Toast.makeText(context,object.getString("nombre")+" ya está en la lista", Toast.LENGTH_SHORT).show();
+							return;
+						}
+					}
+				}
 				prod.setNombre(object.getString("nombre"));
 				prod.setId(object.getObjectId());
-				
-				
 				dialogPrecio = new Dialog((Activity) context, R.style.Theme_Dialog_Translucent);
 				dialogPrecio.requestWindowFeature(Window.FEATURE_NO_TITLE);
 				dialogPrecio.setContentView(R.layout.formulario_precio);
@@ -109,13 +135,35 @@ public class CustomAdapterAlimentos extends ParseQueryAdapter<ParseObject> {
 						}
 						int precio = Integer.parseInt(precio_input);
 						prod.setPrecio(precio);
+						if(globalClass.getLista() !=null){
+							lista = globalClass.getLista();
+						}
 						lista.add(prod);
-						ListView lv_productoPrecio = (ListView) dialogLocal.findViewById(R.id.lv_producto);
-						ProductoPrecioAdapter productoPrecioAdapter = new ProductoPrecioAdapter((Activity) context, lista);
-					
-						final GlobalClass globalClass= (GlobalClass) context.getApplicationContext();
+						ListView lv_productoPrecio;
+						
 						globalClass.setLista(lista);
-						lv_productoPrecio.setAdapter(productoPrecioAdapter);
+						if(lv_productos == null){
+							lv_productoPrecio = (ListView) dialogLocal.findViewById(R.id.lv_producto);
+							ProductoPrecioAdapter productoPrecioAdapter = new ProductoPrecioAdapter((Activity) context, lista, lv_productoPrecio);
+							lv_productoPrecio.setAdapter(productoPrecioAdapter);
+						}
+						else{
+							Comparator<ProductoPrecio> comparador = new Comparator<ProductoPrecio>() {
+								
+								@Override
+								public int compare(ProductoPrecio a, ProductoPrecio b) {
+									int resultado = a.getNombre().compareTo(b.getNombre());
+									if(resultado!=0){
+										return resultado;
+									}
+									return resultado;
+								}
+							};
+							Collections.sort(lista, comparador);
+							ProductoPrecioAdapter productoPrecioAdapter = new ProductoPrecioAdapter((Activity) context, lista, lv_productos);
+							lv_productos.setAdapter(productoPrecioAdapter);
+						}
+						
 						Toast.makeText(context,"Agregado " + prod.getNombre() + " a la lista." , Toast.LENGTH_SHORT).show();
 						dialogPrecio.cancel();
 						

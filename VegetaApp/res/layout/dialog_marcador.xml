@@ -13,16 +13,18 @@
 		android:layout_height="wrap_content"
 		android:text="@string/tv_agregarMarcador"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/vegLetra"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
 
     
     <View
         android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginBottom="3dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/dialog_divider" />
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp" />
     
     <LinearLayout 
         android:layout_width="wrap_content"
@@ -42,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_restaurant"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/vegLetraEsp"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
             
             <ImageButton 
 				android:id="@+id/pin_restaurant"
@@ -67,7 +70,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_local"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/vegLetraEsp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <ImageButton
                 android:id="@+id/pin_carrito"
@@ -86,9 +90,9 @@
             android:id="@+id/cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/cancelar"
-            android:textColor="@android:color/white"
+            android:textColor="@color/vegLetra"
             android:layout_gravity="right" />
 
 </LinearLayout>

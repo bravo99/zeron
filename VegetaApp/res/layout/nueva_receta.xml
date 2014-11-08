@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/fondo2" >
 
-    <LinearLayout
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/fondo2"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -15,14 +12,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_ver"
-                android:src="@drawable/ic_launcher" />
+            <ImageView
+                android:id="@+id/image_receta"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_launcher" 
+                android:layout_margin="5dp"/>
 
             <EditText
                 android:id="@+id/tit_receta"
@@ -38,7 +33,27 @@
 
                 <requestFocus />
             </EditText>
+
         </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/b_receta"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="+ Imagen" />
+
+                <Spinner
+                    android:id="@+id/sp_orig_cam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,6 +79,7 @@
                 android:layout_weight="1"/>
 
         </LinearLayout>
+        
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,7 +97,7 @@
                 android:layout_weight="1" />
 
             <Spinner
-                android:id="@+id/cattegoria_receta"
+                android:id="@+id/categoria_receta"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -105,7 +121,7 @@
                 android:layout_weight="1" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/tiempo_receta"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -120,25 +136,54 @@
         <EditText
             android:id="@+id/prep_receta"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
+            android:inputType="text"
             android:hint="@string/prepa" />
 
-        <Button
-              android:id="@+id/guardar_receta"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/button_ver"
-              android:text="@string/guardar"
-              android:textAppearance="?android:attr/textAppearanceLarge"
-              android:textColor="@color/vegLetra"
-              android:layout_marginTop="5dp"
-              android:layout_marginLeft="5dp"
-              android:layout_marginRight="5dp"
-              android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ingredientes"
+                android:textAppearance="?android:attr/textAppearanceMedium" 
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black_overlay"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/add_Ingrediente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_ver"
+                android:src="@drawable/ic_action_new"
+                android:layout_marginRight="10dp"
+                 />
+
+            
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/lvIngRec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp" >
+            </ListView>
+
+            </LinearLayout>
+
+        
         
     </LinearLayout>
-
-</ScrollView>

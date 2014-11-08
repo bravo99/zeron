@@ -1,6 +1,8 @@
 package cl.zeron.vegetaapp;
 
 
+import com.parse.ParseUser;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +27,7 @@ import android.widget.Toast;
 
 public class ListaRecetasFragment extends Fragment implements OnQueryTextListener, OnActionExpandListener {
 	
-	final String[] categorias = {"Bocadillo","Ensalada","Pastas","Postre","Principal","Sopa"};
+	final String[] categorias = {"Todas","Aperitivo","Ensalada","Pastas","Postres","Principal","Sopa","Salsas" };
 	private Spinner sp_categoria;
 	private ListView lv_recetas;
 	Activity act;
@@ -60,7 +62,7 @@ public class ListaRecetasFragment extends Fragment implements OnQueryTextListene
         
         adaptadorSpinner =new ArrayAdapter<String>(act,android.R.layout.simple_spinner_item, categorias);
 		adaptadorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			
+	  
 		setHasOptionsMenu(true);
     }
     
@@ -78,22 +80,21 @@ public class ListaRecetasFragment extends Fragment implements OnQueryTextListene
     		lv_recetas.setEmptyView(v.findViewById(R.id.listvacia));
     		sp_categoria.setAdapter(adaptadorSpinner);
     		    		
-    		if(recetasAdapter==null){
-				recetasAdapter = new CustomAdapterRecetas(act,sp_categoria.getSelectedItem().toString());
-			}
-    		
-    		lv_recetas.setAdapter(recetasAdapter);
-			recetasAdapter.loadObjects();
-			
+    		   		
 			sp_categoria.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 				@Override
 				public void onItemSelected(AdapterView<?> parent, View view,
 						int position, long id) {
-					recetasAdapter = new CustomAdapterRecetas(act,categorias[position]);
-					lv_recetas.setAdapter(recetasAdapter);
-					recetasAdapter.loadObjects();
-															
+					if(categorias[position]=="Todas"){
+						recetasAdapter = new CustomAdapterRecetas(act);
+						lv_recetas.setAdapter(recetasAdapter);
+						recetasAdapter.loadObjects();
+					}else{
+						recetasAdapter = new CustomAdapterRecetas(act,categorias[position]);
+						lv_recetas.setAdapter(recetasAdapter);
+						recetasAdapter.loadObjects();
+					}								
 				}
 								
 				@Override
@@ -114,10 +115,15 @@ public class ListaRecetasFragment extends Fragment implements OnQueryTextListene
 		// true, then it has handled the app icon touch event
     	switch (item.getItemId()) {
 	        case R.id.menu3_add:
+	        	if(ParseUser.getCurrentUser() == null){
+		        	Toast.makeText(getActivity(), "Debes iniciar sesion para agregar Recetas", Toast.LENGTH_SHORT).show();
+		        	return false;
+
+	        	}
 	        	Intent intent = new Intent(act.getApplicationContext(), RecetaActivity.class);
 	        	startActivity(intent);
+	        	//}else{Toast.makeText(this, "Debes iniciar sesión", Toast.LENGTH_SHORT);act.onBackPressed();}
 	        	
-	        	Toast.makeText(getActivity(), "adsasdasada", Toast.LENGTH_SHORT).show();
 	            return true;
 	            
 	        
@@ -131,7 +137,12 @@ public class ListaRecetasFragment extends Fragment implements OnQueryTextListene
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
                 
     	act.getMenuInflater().inflate(R.menu.vistabusqueda, menu);
-
+    	 MenuItem searchItem = menu.findItem(R.id.menu3_buscar);
+    	
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+	    searchView.setOnQueryTextListener(this);
+    
+	    MenuItemCompat.setOnActionExpandListener(searchItem, this);
 	    super.onCreateOptionsMenu(menu, inflater);
     }
     
@@ -182,6 +193,7 @@ public class ListaRecetasFragment extends Fragment implements OnQueryTextListene
 
 	@Override
 	public boolean onQueryTextSubmit(String busqueda) {
+		lv_recetas.setAdapter(null);
 		String busquedaUC, busquedatodoLC;
 		
 		busquedaUC = (busqueda.substring(0, 1).toUpperCase()).concat(
@@ -194,7 +206,7 @@ public class ListaRecetasFragment extends Fragment implements OnQueryTextListene
 		lv_recetas.setAdapter(recetasAdapter);
 		
 		recetasAdapter.loadObjects();
-		act.onBackPressed();
+		
 		return false;
 		
 		

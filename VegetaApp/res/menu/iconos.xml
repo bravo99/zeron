@@ -20,13 +20,13 @@
         android:title="@string/menu_comentar"
 		android:icon="@drawable/ic_action_chat"
         cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
-     
+     <!-- 
      <item
         android:id="@+id/menu2_editar"
         android:title="@string/menu_editar"
 		android:icon="@drawable/ic_action_edit"
         cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
-    
+    -->
     <item
         android:id="@+id/menu2_eliminar"
         android:title="@string/menu_eliminar"

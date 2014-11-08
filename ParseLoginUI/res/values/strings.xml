@@ -1,0 +1,61 @@
+<resources>
+
+    <string name="com_parse_ui_logo_content_description">Logo</string>
+    <string name="com_parse_ui_progress_dialog_text">Cargando..</string>
+    <string name="com_parse_ui_username_input_hint">Usuario</string>
+    <string name="com_parse_ui_password_input_hint">Contraseña</string>
+    <string name="com_parse_ui_forgot_password_button_label"><u>¿Olvidaste tu contraseña?</u></string>
+    <string name="com_parse_ui_parse_login_button_label">Iniciar sesión</string>
+    <string name="com_parse_ui_parse_signup_button_label">Registrarse</string>
+    <string name="com_parse_ui_facebook_login_button_label">Entrar con Facebook</string>
+    <string name="com_parse_ui_twitter_login_button_label">Entrar con Twitter</string>
+    <string name="com_parse_ui_email_input_hint">Email</string>
+    <string name="com_parse_ui_confirm_password_input_hint">Reingresa la contraseña</string>
+    <string name="com_parse_ui_name_input_hint">Nombre</string>
+    <string name="com_parse_ui_create_account_button_label">Crear Cuenta</string>
+    <string name="com_parse_ui_no_username_toast">Por favor ingresa tu usuario</string>
+    <string name="com_parse_ui_no_password_toast">Por favor ingresa tu contraseña</string>
+    <string name="com_parse_ui_parse_login_invalid_credentials_toast">El usuario no existe</string>
+    <string name="com_parse_ui_parse_login_failed_unknown_toast">No se pudo iniciar sesión, por favor intente nuevamente</string>
+    <string name="com_parse_ui_facebook_login_failed_toast">Falló inicio sesión con Facebook </string>
+    <string name="com_parse_ui_twitter_login_failed_toast">Falló inicio sesión con Twitter</string>
+
+    <plurals name="com_parse_ui_password_too_short_toast">
+        <item quantity="one">Contraseña debe tener al menos %d caracteres</item>
+        <item quantity="other">Contraseña debe tener al menos %d caracteres</item>
+    </plurals>
+
+    <string name="com_parse_ui_username_taken_toast">Usuario ya registrado, intente con otro</string>
+    <string name="com_parse_ui_reenter_password_toast">Por favor reingresa tu contraseña</string>
+    <string name="com_parse_ui_mismatch_confirm_password_toast">Contraseñas no coinciden, intenta de nuevo</string>
+    <string name="com_parse_ui_no_email_toast">Por favor ingresa tu Email</string>
+    <string name="com_parse_ui_invalid_email_toast">Email inválido, corrige e intenta de nuevo</string>
+    <string name="com_parse_ui_email_taken_toast">Email is already taken, please reset your password instead</string>
+    <string name="com_parse_ui_no_name_toast">Por favor ingresa tu nombre</string>
+    <string name="com_parse_ui_signup_failed_unknown_toast">No se pudo iniciar sesion, intenta después</string>
+    <string name="com_parse_ui_login_help_instructions">Ingresa tu Email para recuperar la contraseña</string>
+    <string name="com_parse_ui_login_help_email_input_hint">Email</string>
+    <string name="com_parse_ui_login_help_submit_button_label">Enviar</string>
+    <string name="com_parse_ui_login_help_login_again_button_label">Volver a LogIn</string>
+    <string name="com_parse_ui_login_help_submit_failed_unknown">Failed to request password reset, please try again</string>
+    <string name="com_parse_ui_login_help_email_sent">Please check your email for instructions on how to access your account</string>
+
+    <string name="com_parse_ui_login_warning_layout_missing_username_field">Layout missing username field</string>
+    <string name="com_parse_ui_login_warning_layout_missing_password_field">Layout missing password field</string>
+    <string name="com_parse_ui_login_warning_layout_missing_login_button">Layout missing login button</string>
+    <string name="com_parse_ui_login_warning_layout_missing_signup_button">Layout missing signup button</string>
+    <string name="com_parse_ui_login_warning_layout_missing_login_help_button">Layout missing login help button</string>
+    <string name="com_parse_ui_login_warning_disabled_username_password_login">Disabled username/password login and signup because of missing layout elements</string>
+    <string name="com_parse_ui_login_warning_disabled_facebook_login">Layout missing Facebook login button, disabled Facebook login</string>
+    <string name="com_parse_ui_login_warning_disabled_twitter_login">Layout missing Twitter login button, disabled Twitter login</string>
+    <string name="com_parse_ui_login_warning_parse_login_failed">"Parse username/password login failed, exception: "</string>
+    <string name="com_parse_ui_login_warning_facebook_login_failed">"Facebook login failed, exception: "</string>
+    <string name="com_parse_ui_login_warning_twitter_login_failed">"Twitter login failed, exception: "</string>
+    <string name="com_parse_ui_login_warning_facebook_login_user_update_failed">"Updating user object after Facebook login failed, exception: "</string>
+    <string name="com_parse_ui_login_warning_twitter_login_user_update_failed">"Updating user object after Twitter login failed, exception: "</string>
+    <string name="com_parse_ui_login_warning_parse_signup_failed">"Parse signup failed, exception: "</string>
+    <string name="com_parse_ui_login_warning_password_reset_failed">"Parse password reset failed, exception: "</string>
+
+    <string name="com_parse_ui_login_dispatch_user_logged_in">"User logged in, starting: "</string>
+    <string name="com_parse_ui_login_dispatch_user_not_logged_in">User not logged in, starting ParseLoginActivity</string>
+</resources>

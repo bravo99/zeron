@@ -6,6 +6,8 @@
         <item>Alimentos</item>
         <item>Lugares</item>
         <item>Favoritas</item>
+        <item>LogOut</item>
+        <item>LogIn</item>
     </string-array>
     
     <string-array name="ic_nav_option">
@@ -13,6 +15,8 @@
         <item>@drawable/ic_action_search</item>
         <item>@drawable/ic_action_place</item>
         <item>@drawable/ic_action_favorite</item>
+        <item>@drawable/ic_action_important</item>
+        
         
     </string-array>
  

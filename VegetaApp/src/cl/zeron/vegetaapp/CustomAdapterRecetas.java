@@ -30,6 +30,22 @@ import com.parse.ParseQueryAdapter;
 public class CustomAdapterRecetas extends ParseQueryAdapter<ParseObject> {
    Activity act;
   
+   public CustomAdapterRecetas(Activity activity) {
+		
+		// Use the QueryFactory to construct a PQA that will only show
+		// Todos marked as high-pri
+		super(activity, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public ParseQuery create() {
+				ParseQuery query = new ParseQuery("Receta");
+				query.addDescendingOrder("createdAt");
+				return query;
+			}
+		});
+		this.act=activity;
+		
+	}
+   
 	public CustomAdapterRecetas(Activity activity,final String cat) {
 		
 		// Use the QueryFactory to construct a PQA that will only show

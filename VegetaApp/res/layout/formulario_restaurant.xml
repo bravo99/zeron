@@ -6,29 +6,40 @@
     android:background="@drawable/dialog_container"
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
-
-    	<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/tv_restaurant"
-        	android:textAppearance="?android:attr/textAppearanceLarge"
-        	android:textColor="@android:color/black"
-        	android:layout_marginRight="5dp"/>
+	
+	<TextView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/tv_restaurant"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="@color/vegLetra"
+	    android:textStyle="bold"/>
 
     <View
         android:id="@+id/divider"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="5dp"
-        android:layout_marginBottom="3dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/dialog_divider" />
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp" />
     
 
     
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nuevo_restaurant"/>
+        android:text="@string/nuevo_restaurant"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp" />
 
     
     <EditText 
@@ -43,15 +54,43 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/descripcion"/>
+        android:text="@string/descripcion"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp" />
     
     <EditText 
         android:id="@+id/et_descripcionRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine">
-        
-	</EditText>
+        android:inputType="textMultiLine"/>
+    
+    <TextView 
+        android:id="@+id/tipo_comidas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/comidas"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_marginBottom="20dp" />
 	
 	<LinearLayout
 	    android:layout_width="match_parent"
@@ -78,7 +117,8 @@
 	            <TextView 
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="@string/vegetariano"
+	                android:text="@string/vegetarianas"
+	                android:textColor="@color/vegLetraEsp"
 	                android:layout_gravity="center_vertical"/>
 	            
 	        </LinearLayout>
@@ -96,7 +136,8 @@
 	            <TextView 
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="@string/vegano"
+	                android:text="@string/veganas"
+	                android:textColor="@color/vegLetraEsp"
 	                android:layout_gravity="center_vertical"/>
 	            
 	        </LinearLayout>
@@ -139,9 +180,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/aceptar"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/vegLetra" />
 
         <Button
             android:id="@+id/cancelar"
@@ -149,9 +190,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/dialog_button_selector"
+            android:background="@drawable/button_ver"
             android:text="@string/cancelar"
-            android:textColor="@android:color/white" />
+       		android:textColor="@color/vegLetra" />
     </LinearLayout>
 
 </LinearLayout>

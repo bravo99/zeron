@@ -4,7 +4,10 @@
     <string name="app_name">VegetaApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
+    <string-array name="my_facebook_permissions">
+        <item>public_profile</item>
+        <item>user_friends</item>    
+    </string-array>
      <string name="ib_restaurant">Boton de Restaurant</string>
     <string name="ib_local">Boton de Local</string>
     <string name="ib_geolocalize">Boton de Marker</string>
@@ -30,6 +33,12 @@
     <string name="iv_agregar">Boton para agregar productos a un local</string>
     <string name="listo">Listo</string>
     <string name="precio">Precio: $</string>
+    <string name="producto">Productos</string>
+   <string name="comidas">Encontrarás comidas:</string>
+   <string name="vegetarianas">Vegetarianas</string>
+   <string name="veganas">Veganas</string>
+   <string name="signo_peso">$ </string>
+   <string name="cntn_icon_infowindow">Imagen que muestra si es Restaurant o Tienda el marcador en el Mapa</string>
     <string name="categoria">Categoria</string>
     <string name="preparacion">Preparación</string>
     <string name="ingredientes">Ingredientes</string>
@@ -44,10 +53,17 @@
     <string name="tiempo">Tiempo [min]</string>
     <string name="guardar">Guardar</string>
     <string name="prepa">Preparación…\nEscriba los pasos con un salto de linea</string>
+    <string name="descripcion_ali">Ingrese una descripción del alimento</string>
+    <string name="titulo_alimento">Nombre Alimento</string>
     
    <string name="open_drawer">Drawer abierto</string>
    <string name="close_drawer">Drawer cerrado</string>
    <string name="buscar">Buscar</string>
+   
+   <string name="action_edit">Editar</string>
+   <string name="action_remove">Eliminar</string>
+   <string name="action_accept">Aceptar</string>
+   <string name="action_camera">Tomar Foto</string>
    
    <string name="menu_buscar">Buscar</string>
    <string name="menu_agregar">Agregar</string>

@@ -14,6 +14,7 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -28,6 +29,7 @@ import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import android.app.Activity;
@@ -92,9 +94,10 @@ com.google.android.gms.location.LocationListener {
 	private HashMap<Marker,String> hashRestaurant, hashNombreRestaurant;
 	private HashMap<Marker,String> hashLocal, hashNombreLocal;
 	private double maxDistanciaBusqueda=15;
-	//private ParseObject parseObjetcInfoWindow;
 	private boolean restaurantPress = true, localPress = true;
-	
+	private ParseObject po_marcador;
+	private ArrayList<ProductoPrecio> lista_prueba;
+	private ParseUser currentUser;
 	
 
 	@Override
@@ -148,7 +151,7 @@ com.google.android.gms.location.LocationListener {
 			}
 		}
 		else{
-			Toast.makeText(getActivity(), "Los servicios De Google Play Services no estï¿½n Listos", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Los servicios De Google Play Services no están Listos", Toast.LENGTH_SHORT).show();
 		}
 		
 		
@@ -168,10 +171,35 @@ com.google.android.gms.location.LocationListener {
 	private boolean setUpMapIfNeeded(View inflatedView) {
 		if (mMap == null) {
 			mMap = ((MapView) inflatedView.findViewById(R.id.map)).getMap();
+			mMap.setInfoWindowAdapter(new MarkerInfoWindowAdapter());
+			mMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+				
+				@Override
+				public void onInfoWindowClick(Marker marker) {
+					InfoWindowClick(marker);
+				}
+			});
 		}
 		return(mMap!=null);
 	}
 
+
+	protected void InfoWindowClick(Marker marker) {
+		if(hashLocal.containsKey(marker)){
+			Intent intent = new Intent(getActivity(), LocalActivity.class);
+			intent.putExtra("clave", hashLocal.get(marker));
+			startActivity(intent);
+		}
+		else if(hashRestaurant.containsKey(marker)){
+			Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+			intent.putExtra("clave", hashRestaurant.get(marker));
+			startActivity(intent);
+		}
+		else{
+			Toast.makeText(getActivity(), "Error al buscar el Marcador seleccionado!", Toast.LENGTH_SHORT).show();
+		}
+		
+	}
 
 	@Override
 	public void onResume() {
@@ -250,18 +278,6 @@ com.google.android.gms.location.LocationListener {
 		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 13));
 		iniciarMarkerRestaurant();
 		iniciarMarkerLocal();
-		if(restaurantPress){
-			mostrarMarkerRestaurant();
-		}
-		else{
-			ocultarMarkerRestaurant();
-		}
-		if(localPress){
-			mostrarMarkerLocal();
-		}
-		else{
-			ocultarMarkerLocal();
-		}
 		
 		
 	}
@@ -326,9 +342,14 @@ com.google.android.gms.location.LocationListener {
 		}
 	}
 	protected void botonGeolocalize() {
+		currentUser = ParseUser.getCurrentUser();
+		if(currentUser == null){
+			Toast.makeText(getActivity(), "Debe estar registrado para poder ingresar un Marcador al Mapa", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
     	if(myLoc == null){
-    		Toast.makeText(getActivity(), "Por favor intentelo nuevamente despuÃ©s que su posiciÃ³n aparezca",Toast.LENGTH_SHORT).show();
+    		Toast.makeText(getActivity(), "Por favor intentelo nuevamente después que su posición aparezca",Toast.LENGTH_SHORT).show();
     		return;
     	}
     	mostrarDialogMarker();
@@ -457,7 +478,7 @@ com.google.android.gms.location.LocationListener {
 				// Si los campos no estan vacios, se guarda el registro en la base de datos.
 				Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	        	if(myLoc == null){
-	        		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	        		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	        		return;
 	        	}
 	        	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -467,8 +488,9 @@ com.google.android.gms.location.LocationListener {
 			    po_marcador.put("location", point);
 			    po_marcador.put("vegetariano", ch1.isChecked());
 			    po_marcador.put("vegano",ch2.isChecked());
+			    po_marcador.put("creado_por", ParseUser.getCurrentUser());
 	        	if(mBitmap!=null){
-	        		Bitmap mBitmapScaled = Bitmap.createScaledBitmap(mBitmap, 500, 500 * mBitmap.getHeight() / mBitmap.getWidth(), false);
+	        		Bitmap mBitmapScaled = Bitmap.createScaledBitmap(mBitmap, 200 , 300, false);
 	        		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 	        		//rotatedScaledMealImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 	        		mBitmapScaled.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -496,6 +518,10 @@ com.google.android.gms.location.LocationListener {
 							mProgressDialog.dismiss();
 							mProgressDialog=null;
 							Toast.makeText(getActivity(), "Restaurant Agregado", Toast.LENGTH_SHORT).show();
+							mMap.clear();
+							iniciarMarkerRestaurant();
+							iniciarMarkerLocal();
+							
 						}
 						else{
 							mProgressDialog.dismiss();
@@ -523,6 +549,7 @@ com.google.android.gms.location.LocationListener {
 				imageFile=null;
 				dialogLocal=null;
 				mBitmap=null;
+				globalClass.setLista(null);
 				
 			}
 		});
@@ -554,12 +581,10 @@ com.google.android.gms.location.LocationListener {
 				mostrarDialogAlimento();
 			}
 		});
-		// Comentado ya que aun no estï¿½ la variable global globalClass
 		((Button) dialogLocal.findViewById(R.id.aceptar)).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				
 				EditText et_nombre = (EditText) dialogLocal.findViewById(R.id.et_nombre);
 				EditText et_descripcion = (EditText) dialogLocal.findViewById(R.id.et_descripcion);
 				final String nombre = et_nombre.getText().toString();
@@ -574,19 +599,22 @@ com.google.android.gms.location.LocationListener {
 						return;
 					}
 				}
-				// Si los campos estï¿½n rellenos se procede a guardar en la base de datos
+				lista_prueba = globalClass.getLista();
+				
 				Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	        	if(myLoc == null){
-	        		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	        		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	        		return;
 	        	}
 	        	final ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
-	        	ParseObject po_marcador = new ParseObject("Local");
+	        	po_marcador = new ParseObject("Local");
 			    po_marcador.put("nombre", nombre);
 			    po_marcador.put("descripcion", descripcion );
 			    po_marcador.put("location", point);
+			    po_marcador.put("creado_por", ParseUser.getCurrentUser());
 	        	if(mBitmap!=null){
-	        		Bitmap mBitmapScaled = Bitmap.createScaledBitmap(mBitmap, 500, 500 * mBitmap.getHeight() / mBitmap.getWidth(), false);
+	        		//* mBitmap.getHeight() / mBitmap.getWidth()
+	        		Bitmap mBitmapScaled = Bitmap.createScaledBitmap(mBitmap, 200, 300 , false);
 	        		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 	        		//rotatedScaledMealImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 	        		mBitmapScaled.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -597,6 +625,7 @@ com.google.android.gms.location.LocationListener {
 					iFile.saveInBackground();
 					po_marcador.put("imagen",iFile);
 	        	}
+	        	
 	        	//po_marcador.put("creado_por", "GzI2BheHjA" );
 	        	mProgressDialog = new ProgressDialog(getActivity());
 	        	mProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -611,64 +640,43 @@ com.google.android.gms.location.LocationListener {
 					@Override
 					public void done(ParseException e) {
 						if(e==null){
-							ParseQuery<ParseObject> query = ParseQuery.getQuery("Local");
-							query.whereEqualTo("nombre", nombre );
-							query.whereNear("location", point);
-							query.setLimit(1);
-							query.findInBackground(new FindCallback<ParseObject>() {
-								
-								@Override
-								public void done(List<ParseObject> list, ParseException e) {
-									if(e==null){
-										// El primer elemento de la lista (se supone que solo hay un objeto llamado con el nombre del Local)
-										String idObj = list.get(0).getObjectId();
-										ArrayList<ProductoPrecio> itemsProductos;
-										itemsProductos = globalClass.getLista();
-										// Ya se encontrï¿½ el Id del objeto creado.
-										if(itemsProductos!=null){
-											for (ProductoPrecio prod : itemsProductos){
-												ParseObject saveAlimentoLocal = new ParseObject("AlimentoLocal");
-												saveAlimentoLocal.put("local", ParseObject.createWithoutData("Local", idObj));
-												saveAlimentoLocal.put("alimento", ParseObject.createWithoutData("Alimento", prod.getId()));
-												saveAlimentoLocal.put("precio",prod.getPrecio());
-												saveAlimentoLocal.saveInBackground(new SaveCallback() {
-													
-													@Override
-													public void done(ParseException e) {
-														if(e==null){
-															// Producto ingresado correctamente
-															
-														}
-														else{
-															Toast.makeText(getActivity(), "Error al guardar Producto", Toast.LENGTH_SHORT).show();
-														}
-													}
-												});
-											} // final del ciclo for (ProductoPrecio)
+							if(lista_prueba!=null){
+								for(ProductoPrecio objeto : lista_prueba){
+									ParseObject saveAlimentoLocal = new ParseObject("AlimentoLocal");
+									saveAlimentoLocal.put("local", po_marcador);
+									saveAlimentoLocal.put("alimento", ParseObject.createWithoutData("Alimento", objeto.getId()));
+									saveAlimentoLocal.put("precio",objeto.getPrecio());
+									Toast.makeText(getActivity(), objeto.getNombre(), Toast.LENGTH_SHORT).show();
+									saveAlimentoLocal.saveInBackground(new SaveCallback() {
+										
+										@Override
+										public void done(ParseException e) {
+											if(e==null){
+												Toast.makeText(getActivity(), "Se guardó la tienda correctamente", Toast.LENGTH_SHORT ).show();
+												mProgressDialog.dismiss();
+											}
+											else{
+												mProgressDialog.dismiss();
+												Toast.makeText(getActivity(), "Error al guardar los productos", Toast.LENGTH_SHORT ).show();
+											}
+											
 										}
-										else{
-											// La lista de productos se encuentra vacia
-										}
-									}
-									else{
-										// No se encuentre el Local recien creado
-									}
-									
+									});
 								}
-							});
-							mProgressDialog.dismiss();
-							Toast.makeText(getActivity(), "Local Agregado", Toast.LENGTH_SHORT).show();
+							}
+							mMap.clear();
+							iniciarMarkerRestaurant();
+							iniciarMarkerLocal();
 						}
 						else{
 							mProgressDialog.dismiss();
-							Toast.makeText(getActivity(), "Error al guardar, intentelo nuevamente", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getActivity(), "Error al guardar la Tienda, por favor intentelo nuevamente.", Toast.LENGTH_SHORT ).show();
 						}
+						
 					}
 				});
 				dialogLocal.cancel();
 				dialogMarker.cancel();
-				
-				
 			}
 		});
 	}
@@ -689,7 +697,6 @@ com.google.android.gms.location.LocationListener {
 			
 			@Override
 			public void onCancel(DialogInterface arg0) {
-				globalClass.setLista(null);
 			}
 		});
 		((Button) dialogAlimento.findViewById(R.id.listo)).setOnClickListener(new OnClickListener() {
@@ -711,7 +718,6 @@ com.google.android.gms.location.LocationListener {
 					 ImageButton imgbtn;
 					 TextView tv_foto;
 					 if(dRestaurant){
-						 Toast.makeText(getActivity(), "Imagen guardada en: "+imageFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
 						 imgbtn = (ImageButton) dialogRestaurant.findViewById(R.id.camara);
 						 imgbtn.setImageResource(R.drawable.adjunto);
 						 tv_foto = (TextView) dialogRestaurant.findViewById(R.id.tv_camara);
@@ -722,11 +728,8 @@ com.google.android.gms.location.LocationListener {
 					 }
 					 
 					 if(dLocal){
-						 Toast.makeText(getActivity(), "Imagen guardada en: "+imageFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
 						 imgbtn = (ImageButton) dialogLocal.findViewById(R.id.camara);
-						 imgbtn.setImageResource(R.drawable.adjunto);
-						 tv_foto = (TextView) dialogLocal.findViewById(R.id.tv_camara);
-						 tv_foto.setText("Imagen Adjunta");
+						 imgbtn.setImageResource(R.drawable.ic_action_attachment);
 						 mBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 						 dLocal=false;
 						 imageFile=null;
@@ -748,9 +751,7 @@ com.google.android.gms.location.LocationListener {
 				 }
 				 if(dLocal){
 					 imgbtn = (ImageButton) dialogLocal.findViewById(R.id.camara);
-					 imgbtn.setImageResource(R.drawable.camara);
-					 tv_foto = (TextView) dialogLocal.findViewById(R.id.tv_camara);
-					 tv_foto.setText("Foto");
+					 imgbtn.setImageResource(R.drawable.ic_action_camera);
 					 dLocal=false;
 					 imageFile=null;
 					 mBitmap=null;
@@ -813,7 +814,7 @@ com.google.android.gms.location.LocationListener {
 			ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
 			Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	    	if(myLoc == null){
-	    		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	    		return;
 	    	}
 	    	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -823,15 +824,19 @@ com.google.android.gms.location.LocationListener {
 				@Override
 				public void done(List<ParseObject> list, ParseException e) {
 					if(e==null){
+						Boolean visible = true;
+						if(!restaurantPress){
+							visible=false;
+						}
 						for(ParseObject restaurant: list){
 							LatLng position = new LatLng(restaurant.getParseGeoPoint("location").getLatitude(), restaurant.getParseGeoPoint("location").getLongitude());
 							MarkerOptions markerOption = new MarkerOptions();
 							markerOption.position(position);
+							markerOption.visible(visible);
 							markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.point_restaurant));
 							Marker marker = mMap.addMarker(markerOption);
 							hashRestaurant.put(marker, restaurant.getObjectId());
 							hashNombreRestaurant.put(marker,restaurant.getString("nombre"));
-							mMap.setInfoWindowAdapter(new MarkerInfoWindowAdapter());
 						}
 					}
 					
@@ -841,14 +846,14 @@ com.google.android.gms.location.LocationListener {
 			
 		}
 	private void iniciarMarkerLocal() {
-			hashNombreRestaurant=null;
+			hashNombreLocal=null;
 			hashLocal = null;
-			hashNombreRestaurant = new HashMap<Marker, String>();
+			hashNombreLocal = new HashMap<Marker, String>();
 			hashLocal = new HashMap<Marker, String>();
 			ParseQuery<ParseObject> query = ParseQuery.getQuery("Local");
 			Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
 	    	if(myLoc == null){
-	    		Toast.makeText(getActivity(), "Problemas con su ubicaciï¿½n, intenelo de nuevo",Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getActivity(), "Problemas con su ubicación, intenelo de nuevo",Toast.LENGTH_SHORT).show();
 	    		return;
 	    	}
 	    	ParseGeoPoint point = new ParseGeoPoint(myLoc.getLatitude(),myLoc.getLongitude());
@@ -858,16 +863,19 @@ com.google.android.gms.location.LocationListener {
 				@Override
 				public void done(List<ParseObject> list, ParseException e) {
 					if(e==null){
+						Boolean visible = true;
+						if(!localPress){
+							visible = false;
+						}
 						for(ParseObject local: list){
 							LatLng position = new LatLng(local.getParseGeoPoint("location").getLatitude(), local.getParseGeoPoint("location").getLongitude());
 							MarkerOptions markerOption = new MarkerOptions();
-							markerOption.title(local.getString("nombre"));
-							markerOption.snippet(local.getString("descripcion"));
 							markerOption.position(position);
+							markerOption.visible(visible);
 							markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.point_marker));
 							Marker marker = mMap.addMarker(markerOption);
 							hashLocal.put(marker, local.getObjectId());
-							hashNombreRestaurant.put(marker, local.getString("nombre"));
+							hashNombreLocal.put(marker, local.getString("nombre"));
 						}
 					}
 					
@@ -876,8 +884,6 @@ com.google.android.gms.location.LocationListener {
 			
 			
 		}
-	
-	
 	public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
 		 
 		 public MarkerInfoWindowAdapter(){
@@ -888,59 +894,28 @@ com.google.android.gms.location.LocationListener {
 			View v;
 			LayoutInflater inflater = (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inflater.inflate(R.layout.infowindow_layout, null);
-			String nombre;
+			String nombre, snnipet;
 			ImageView icon = (ImageView) v.findViewById(R.id.icon);
 			if(hashRestaurant.containsKey(marker)){
 				nombre = hashNombreRestaurant.get(marker);
+				snnipet= "Restaurant";
 				icon.setImageResource(R.drawable.restaurant);
 			}
 			else if(hashLocal.containsKey(marker)){
 				nombre = hashNombreLocal.get(marker);
+				snnipet = "Tienda";
 				icon.setImageResource(R.drawable.local);
 			}
 			else{
-				Toast.makeText(getActivity(), "No se encontrï¿½ el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "No se encontró el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
 				return null;
 			}
 			
 			TextView tv_titulo = (TextView) v.findViewById(R.id.tv_titulo);
+			TextView tv_snnipet = (TextView) v.findViewById(R.id.tv_snnipet);
 			tv_titulo.setText(nombre);
+			tv_snnipet.setText(snnipet);
 			return v;
-			/*parseObjetcInfoWindow =null;
-			View v;
-			String idObject;
-			ParseQuery<ParseObject> query;
-			LayoutInflater inflater = (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.infowindow_layout, null);
-			if(hashRestaurant.containsKey(marker)){
-				idObject = hashRestaurant.get(marker);
-				query = ParseQuery.getQuery("Restaurant");
-				Toast.makeText(getActivity(), "Entra a restaurant", Toast.LENGTH_SHORT).show();
-			}
-			else if(hashLocal.containsKey(marker)){
-				idObject = hashLocal.get(marker);
-				query = ParseQuery.getQuery("Local");
-			}
-			else{
-				Toast.makeText(getActivity(), "No se encontrï¿½ el Marcador en los registros (?)", Toast.LENGTH_SHORT).show();
-				return null;
-			}
-			try {
-				parseObjetcInfoWindow = query.get(idObject);
-				String nombreParse = parseObjetcInfoWindow.getString("nombre");
-				TextView nombre = (TextView) v.findViewById(R.id.tv_titulo);
-				nombre.setText(nombreParse);
-				
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			if(v==null){
-				Toast.makeText(getActivity(), "Vista Nulla", Toast.LENGTH_SHORT).show();
-			}
-			return v;*/
 		}
 
 		@Override
@@ -949,7 +924,5 @@ com.google.android.gms.location.LocationListener {
 		}
 		 
 	 }
-
-	
 
 }

@@ -13,6 +13,6 @@
     <!-- borde -->
     <stroke
         android:width="3dp"
-        android:color="@android:color/darker_gray" />
+        android:color="@color/vegLetraEsp" />
 
 </shape> 
