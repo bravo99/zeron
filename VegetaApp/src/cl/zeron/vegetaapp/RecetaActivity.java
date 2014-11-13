@@ -51,7 +51,7 @@ import android.widget.Toast;
 	EditText preparacion;
 	ImageButton addIng;
 	ListView ingXrec;
-	Button btnAction;
+	ImageButton btnAction;
 	Button agregar;
 	private ParseUser currentUser;
 	private Dialog dialogAlimento;
@@ -118,27 +118,27 @@ import android.widget.Toast;
 		origen.setAdapter(adaptadorSpinner2);
 		
 		name = Environment.getExternalStorageDirectory() + "/test.jpg";
-		btnAction=(Button)findViewById(R.id.b_receta);
+		btnAction=(ImageButton)findViewById(R.id.b_receta);
 		
 		btnAction.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				/**
-       			 * Obtenemos los botones de imagen completa y de galer�a para revisar su estatus
-       			 * m�s adelante
+       			 * Obtenemos los botones de imagen completa y de galería para revisar su estatus
+       			 * más adelante
        			 */
        			//RadioButton rbtnFull = (RadioButton)findViewById(R.id.radbtnFull);
        			
        		//	RadioButton rbtnGallery = (RadioButton)findViewById(R.id.radbtnGall);
        			
        			/**
-       			 * Para todos los casos es necesario un intent, si accesamos la c�mara con la acci�n
-       			 * ACTION_IMAGE_CAPTURE, si accesamos la galer�a con la acci�n ACTION_PICK. 
-       			 * En el caso de la vista previa (thumbnail) no se necesita m�s que el intent, 
-       			 * el c�digo e iniciar la actividad. Por eso inicializamos las variables intent y
-       			 * code con los valores necesarios para el caso del thumbnail, as� si ese es el
-       			 * bot�n seleccionado no validamos nada en un if. 
+       			 * Para todos los casos es necesario un intent, si accesamos la cámara con la acción
+       			 * ACTION_IMAGE_CAPTURE, si accesamos la galería con la acción ACTION_PICK. 
+       			 * En el caso de la vista previa (thumbnail) no se necesita más que el intent, 
+       			 * el código e iniciar la actividad. Por eso inicializamos las variables intent y
+       			 * code con los valores necesarios para el caso del thumbnail, así si ese es el
+       			 * botón seleccionado no validamos nada en un if. 
        			 */
        			Intent intent =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE); 
        			int code = TAKE_PICTURE;
@@ -151,8 +151,8 @@ import android.widget.Toast;
        				Uri output = Uri.fromFile(new File(name));
        		    	intent.putExtra(MediaStore.EXTRA_OUTPUT, output);
        			/**
-       			 * Si la opci�n seleccionada es ir a la galer�a, el intent es diferente y el c�digo
-       			 * tambi�n, en la consecuencia de que est� chequeado el bot�n de la galer�a se hacen
+       			 * Si la opcion seleccionada es ir a la galería, el intent es diferente y el codigo
+       			 * también, en la consecuencia de que está chequeado el botón de la galería se hacen
        			 * esas asignaciones
        			 */       		    	
        			} else if (origen.getSelectedItem().equals(origenes[1])){       				
@@ -214,7 +214,7 @@ import android.widget.Toast;
     	    			//ImageView iv = (ImageView)findViewById(R.id.imgView);
     	    			iv.setImageBitmap(BitmapFactory.decodeFile(name));
     	    			/**
-    	    			 * Para guardar la imagen en la galer�a, utilizamos una conexi�n a un MediaScanner
+    	    			 * Para guardar la imagen en la galeráa, utilizamos una conexión a un MediaScanner
     	    			 */
     	    			new MediaScannerConnectionClient() {
     	    				private MediaScannerConnection msc = null; {
@@ -240,19 +240,23 @@ import android.widget.Toast;
     	 */
     	} else if (requestCode == SELECT_PICTURE){
     		switch(resultCode){
+    		
 				case Activity.RESULT_OK:
 		    		Uri selectedImage = data.getData();
-		    		InputStream is;
-		    		try {
-		    			is = getContentResolver().openInputStream(selectedImage);
-		    	    	BufferedInputStream bis = new BufferedInputStream(is);
-		    	    	Bitmap bitmap = BitmapFactory.decodeStream(bis); 
-		    	    	
-		    	    	iv.setImageBitmap(bitmap);	
-		 
-		    		} catch (FileNotFoundException e) {}
+				    InputStream is;
+				    try {
+				    	is = getContentResolver().openInputStream(selectedImage);
+				    	BufferedInputStream bis = new BufferedInputStream(is);
+				    	Bitmap bitmap = BitmapFactory.decodeStream(bis);
+				    	
+				    	iv.setImageBitmap(bitmap);
+				    	
+				    } catch (FileNotFoundException e) {}
+		    	    break;
+		    	    
 				case Activity.RESULT_CANCELED:
-					iv.setImageResource(R.drawable.ic_launcher);
+					
+					break;
     		}
     	}
     }
@@ -286,7 +290,7 @@ import android.widget.Toast;
 			
 			final ParseObject receta = new ParseObject("Receta");
 			receta.put("nombre", nom_rec);
-			receta.put("categoria", sp_personas.getSelectedItem().toString());
+			receta.put("categoria", sp_categorias.getSelectedItem().toString());
 			receta.put("personas", sp_personas.getSelectedItem().toString());
 			receta.put("vecesCalif", 0);
 			receta.put("denuncias", 0);

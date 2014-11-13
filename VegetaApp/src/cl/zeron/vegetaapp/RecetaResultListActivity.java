@@ -141,7 +141,12 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	    	public void done(ParseObject object, ParseException e) {
 	    		if (e == null) {
 	    			object.put("ingredientes", ingred.getText().toString());
-	    			object.pinInBackground(null);
+	    			try {
+						object.fetch().pinInBackground();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	    			object.saveInBackground(new SaveCallback() {
 						
 						@Override
@@ -421,7 +426,7 @@ public class RecetaResultListActivity extends ActionBarActivity{
 	
 	protected void startLoading() {
 		proDialog = new ProgressDialog(this);
-	    proDialog.setMessage("loading...");
+	    proDialog.setMessage("Cargando...");
 	    proDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 	    proDialog.setCancelable(true);
 	    proDialog.show();

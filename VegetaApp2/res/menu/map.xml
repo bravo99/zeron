@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.vegeta.vegetaappmaps.MapActivity" >
+
+    <item
+        android:id="@+id/action_search_city"
+        android:title="@string/action_search_city"/>
+    <item 
+        android:id="@+id/action_search_restaurant"
+        android:title="@string/action_search_restaurant"/>
+    <item 
+        android:id="@+id/action_search_local"
+        android:title="@string/action_search_local"/>
+    <item 
+        android:id="@+id/action_search_producto"
+        android:title="@string/action_search_producto"/>
+
+</menu>

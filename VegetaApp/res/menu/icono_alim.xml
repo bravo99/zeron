@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cl.zeron.vegetaapp="http://schemas.android.com/apk/res-auto" >
+    
+	 
+     <item
+        android:id="@+id/menu_editar"
+        android:title="@string/menu_editar"
+		android:icon="@drawable/ic_action_edit_g"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+    
+     <item
+        android:id="@+id/menu_lugar"
+        android:title="@string/menu_lugar"
+		android:icon="@drawable/ic_action_place"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|withText"/>
+        
+        
+</menu>

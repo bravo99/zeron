@@ -34,6 +34,13 @@
         <!-- Support library compatibility -->
         <item name="android:background">@color/vegColor</item>
         <item name="android:backgroundSplit">@color/vegColor</item>
+        <item name="android:titleTextStyle">@color/vegLetra</item>
+        
     </style>
+    
+    <style name="TitleTextStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+    <item name="android:textColor">@color/vegLetra</item>
+    <item name="android:textStyle">bold</item>
+</style>
     
 </resources>

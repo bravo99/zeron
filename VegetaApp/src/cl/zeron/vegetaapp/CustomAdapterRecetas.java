@@ -124,6 +124,7 @@ public CustomAdapterRecetas(final Activity activity,final String nombre, final S
 		if (imageFile != null) {
 			recetaImage.setParseFile(imageFile);
 			recetaImage.loadInBackground();
+			recetaImage.setImageResource(R.drawable.ic_launcher3);
 		}
 			
 		

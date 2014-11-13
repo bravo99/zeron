@@ -72,5 +72,6 @@
    <string name="menu_comentar">Comentar</string>
    <string name="menu_eliminar">Eliminar</string>
    <string name="menu_editar">Editar</string>
+   <string name="menu_lugar">Lugar</string>
 
 </resources>

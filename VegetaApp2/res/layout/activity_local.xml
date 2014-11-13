@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+	
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="20dp"
+	    android:paddingRight="20dp">
+	    
+	    <TextView 
+	        android:id="@+id/tv_nombre"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/vegLetra"
+	        android:textStyle="bold"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:layout_marginBottom="25dp" />
+	    
+	    <com.parse.ParseImageView
+			android:id="@+id/imagen"
+			android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/ic_launcher2"
+	        android:layout_below="@id/tv_nombre"/>
+	    
+	    <TextView 
+	        android:id="@+id/tv_descripcion"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/descripcion"
+	        android:layout_below="@id/imagen"
+	        android:textColor="@color/vegLetraEsp"
+	        android:padding="10dp"
+	        android:textAppearance="?android:attr/textAppearanceLarge"/>
+	    
+	    <View
+	        android:id="@+id/divider"
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginLeft="5dp"
+	        android:background="@color/vegLetraEsp"
+	        android:layout_below="@id/tv_descripcion" />
+	
+	    <TextView 
+	        android:id="@+id/descripcion"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/divider"
+	        android:padding="5dp"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    <TextView 
+	        android:id="@+id/tv_productos"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/productos"
+	        android:layout_below="@id/descripcion"
+	        android:textColor="@color/vegLetraEsp"
+	        android:padding="10dp"
+	        android:textAppearance="?android:attr/textAppearanceLarge"/>
+	    
+	    <View
+	        android:id="@+id/divider2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginLeft="5dp"
+	        android:background="@color/vegLetraEsp"
+	        android:layout_below="@id/tv_productos" />
+	   
+	   <LinearLayout
+                android:id="@+id/linear_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/divider2"
+                android:layout_marginBottom="50dp" />
+	    
+	    
+	</RelativeLayout>
+</ScrollView>

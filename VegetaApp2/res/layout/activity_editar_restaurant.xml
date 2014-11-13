@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView 
+        android:id="@+id/titulo_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevo_local"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <EditText 
+        android:id="@+id/et_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_below="@id/titulo_nombre">
+        
+        <requestFocus />
+	</EditText>
+	
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/et_nombre"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+    
+    <TextView 
+        android:id="@+id/titulo_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:text="@string/descripcion"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    
+    <EditText 
+        android:id="@+id/et_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:layout_below="@id/titulo_descripcion"/>
+    
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/et_descripcion"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+    
+    <TextView 
+        android:id="@+id/tipo_comidas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider2"
+        android:text="@string/comidas"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    
+    <LinearLayout 
+        android:id="@+id/ll_checkbox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tipo_comidas">
+        
+        <CheckBox 
+	        android:id="@+id/cb_vegetariano"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"  />
+    
+    	<TextView 
+	        android:id="@+id/vegetariano"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/vegetarianas"
+	        android:layout_gravity="center_vertical"
+	        android:textColor="@color/vegLetraEsp"
+	        android:textSize="15sp"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/ll_checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_checkbox1"
+        android:orientation="horizontal">
+    	
+    	<CheckBox 
+	        android:id="@+id/cb_vegano"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:checked="false"/>
+    
+    	<TextView 
+	        android:id="@+id/vegano"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/veganas"
+	        android:layout_gravity="center_vertical"
+	        android:textColor="@color/vegLetraEsp"
+	        android:textSize="15sp"/>
+        
+    </LinearLayout>
+    
+    
+
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="black">#000000</color>
+    <color name="button_normal">#929392</color>
+    <color name="button_pressed">#c0c1c0</color>
+    <color name="dialog_divider">@android:color/black</color>
+    <color name="OliveDrab">#6B8E23</color>
+    <color name="vegColor">#d7e598</color>
+    <color name="vegColorp">#cfdca3</color>
+    <color name="vegLetra">#676733</color>
+    <color name="vegLetraEsp">#9aca36</color>
+</resources>

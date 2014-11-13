@@ -81,6 +81,7 @@ public class CustomAdapterAlimentos extends ParseQueryAdapter<ParseObject> {
 		if (imageFile != null) {
 			alimentoImage.setParseFile(imageFile);
 			alimentoImage.loadInBackground();
+			alimentoImage.setImageResource(R.drawable.ic_launcher3);
 		}
 
 		// Add the title view
@@ -96,7 +97,7 @@ public class CustomAdapterAlimentos extends ParseQueryAdapter<ParseObject> {
 				if(globalClass.getLista() != null){
 					for(ProductoPrecio producto_alimento : globalClass.getLista()){
 						if(producto_alimento.getId().equals(object.getObjectId())){
-							Toast.makeText(context,object.getString("nombre")+" ya está en la lista", Toast.LENGTH_SHORT).show();
+							Toast.makeText(context,object.getString("nombre")+" ya estï¿½ en la lista", Toast.LENGTH_SHORT).show();
 							return;
 						}
 					}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+	<TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp" />
+	
+	<Button 
+        android:id="@+id/btn_cualquiera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press!"
+        android:onClick="btnHandler"
+        android:layout_alignParentRight="true"/>
+	
+    <TextView
+        android:id="@+id/tipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/btn_cualquiera"/>
+    
+    <TextView 
+	    android:id="@+id/signo_precio"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/signo_peso"
+	    android:layout_toLeftOf="@id/tipo"/>
+    
+
+   
+   
+</RelativeLayout>

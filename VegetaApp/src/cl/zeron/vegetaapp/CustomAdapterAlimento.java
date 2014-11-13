@@ -77,6 +77,7 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 			if (imageFile != null) {
 				alimentoImage.setParseFile(imageFile);
 				alimentoImage.loadInBackground();
+				alimentoImage.setImageResource(R.drawable.ic_launcher3);
 			}
 	        
 			// Add the title view
@@ -113,7 +114,7 @@ public class CustomAdapterAlimento extends ParseQueryAdapter<ParseObject> {
 					
 						e.printStackTrace();
 					}
-					
+					bundle.putString("ID",object.getParseObject("ingrediente").getObjectId());
 					Intent i = new Intent(act, AlimentoResultListActivity.class);
 					i.putExtras(bundle);
 					act.startActivity(i);

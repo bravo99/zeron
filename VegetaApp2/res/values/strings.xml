@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VegetaApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="my_facebook_permissions">
+        <item>public_profile</item>
+        <item>user_friends</item>    
+    </string-array>
+     <string name="ib_restaurant">Boton de Restaurant</string>
+    <string name="ib_local">Boton de Local</string>
+    <string name="ib_geolocalize">Boton de Marker</string>
+    <string name="action_search_city">Buscar en lugar específico</string>
+    <string name="action_search_restaurant">Buscar por nombre de Restaurant</string>
+    <string name="action_search_local">Buscar por nombre de tienda</string>
+    <string name="action_search_producto">Buscar producto</string>
+    <string name="tv_agregarMarcador">Agregar un Marcador</string>
+    <string name="tv_restaurant">Nuevo Restaurant</string>
+    <string name="tv_local">Nuevo Local</string>
+    <string name="content_restaurant">ImageButon para agregar un marcador de Restaurant</string>
+    <string name="content_local">ImageButon para agregar un marcador de Local</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="nuevo_restaurant">Nombre Restaurant</string>
+    <string name="nuevo_local">Nombre Local</string>
+    <string name="descripcion">Descripción</string>
+    <string name="vegetariano">Vegetariano</string>
+    <string name="vegano">Vegano</string>
+    <string name="content_camara">Boton para sacar una foto</string>
+    <string name="camara">Foto</string>
+    <string name="productos">Productos que se pueden encontrar</string>
+    <string name="iv_agregar">Boton para agregar productos a un local</string>
+    <string name="listo">Listo</string>
+    <string name="precio">Precio: $</string>
+    <string name="producto">Productos</string>
+   <string name="comidas">Encontrarás comidas:</string>
+   <string name="vegetarianas">Vegetarianas</string>
+   <string name="veganas">Veganas</string>
+   <string name="signo_peso">$ </string>
+   <string name="cntn_icon_infowindow">Imagen que muestra si es Restaurant o Tienda el marcador en el Mapa</string>
+    <string name="categoria">Categoria</string>
+    <string name="preparacion">Preparación</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="ver">Ver</string>
+    <string name="emptyList">Sin contenido que mostrar</string>
+    <string name="informacion">Información</string>
+    <string name="agregue">Agregue su comentario</string>
+    <string name="cargando">Cargando…</string>
+    <string name="titulo_receta">Título Receta</string>
+    <string name="personas">Personas</string>
+    <string name="tiempo">Tiempo [min]</string>
+    <string name="guardar">Guardar</string>
+    <string name="prepa">Preparación…\nEscriba los pasos con un salto de linea</string>
+    <string name="descripcion_ali">Ingrese una descripción del alimento</string>
+    <string name="titulo_alimento">Nombre Alimento</string>
+    <string name="add_comentario">Añadir un nuevo comentario</string>
+    
+   <string name="open_drawer">Drawer abierto</string>
+   <string name="close_drawer">Drawer cerrado</string>
+   <string name="buscar">Buscar</string>
+   <string name="recetas">Recetas que contienen el ingrediente</string>
+   
+   <string name="action_edit">Editar</string>
+   <string name="action_remove">Eliminar</string>
+   <string name="action_accept">Aceptar</string>
+   <string name="action_camera">Tomar Foto</string>
+   <string name="action_place">Buscar en mapa</string>
+   <string name="menu_buscar">Buscar</string>
+   <string name="menu_agregar">Agregar</string>
+   <string name="menu_favoritas">Favoritas</string>
+   <string name="menu_calificar">Calificar</string>
+   <string name="menu_comentar">Comentar</string>
+   <string name="menu_eliminar">Eliminar</string>
+   <string name="menu_editar">Editar</string>
+
+</resources>

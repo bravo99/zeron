@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DefaultLocale" severity="ignore" />
+    <issue id="InflateParams" severity="ignore">
+        <ignore path="src/com/vegeta/vegetaappmaps/FragmentMapa.java" />
+    </issue>
+    <issue id="NewApi" severity="ignore">
+        <ignore path="src/cl/zeron/vegetaapp/LocalActivity.java" />
+    </issue>
+</lint>

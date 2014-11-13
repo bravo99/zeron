@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_container"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+    
+    <TextView
+        android:id="@+id/tv_titulo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/tv_local"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="@color/vegLetra"
+	    android:textStyle="bold"
+	    android:layout_centerHorizontal="true"/>
+    <ImageButton 
+        android:id="@+id/camara"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button_ver"
+        android:src="@drawable/ic_action_camera"
+        android:contentDescription="@string/content_camara"
+        android:layout_alignParentRight="true"/>
+    
+    <View
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_height="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/camara" />
+    
+    <TextView 
+        android:id="@+id/tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevo_local"
+        android:layout_below="@id/divider"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/tv_nombre" />
+
+    
+    <EditText 
+        android:id="@+id/et_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_below="@id/divider2"
+	    android:layout_marginBottom="10dp">
+        
+        <requestFocus />
+	</EditText>
+	
+    <TextView 
+        android:id="@+id/tv_descripcion"
+        android:layout_below="@id/et_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/descripcion"
+        android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/tv_descripcion" />
+    
+    <EditText 
+        android:id="@+id/et_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:layout_below="@id/divider3"
+        android:layout_marginBottom="10dp"/>
+    
+	<TextView 
+	    android:id="@+id/tv_producto"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/et_descripcion"
+	    android:text="@string/productos"
+	    android:textColor="@color/vegLetra"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+	<View
+        android:id="@+id/divider4"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/vegLetraEsp"
+        android:layout_below="@id/tv_producto" />
+	
+	<LinearLayout
+                android:id="@+id/linear_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/divider4" />
+    
+    <ImageButton 
+        android:id="@+id/ib_agregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/iv_agregar"
+        android:src="@drawable/add"
+        android:layout_below="@id/linear_listview"
+        android:layout_alignParentRight="true"/>
+    
+    <com.parse.ParseImageView
+            android:id="@+id/imagen_parse"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/ib_agregar"
+            android:visibility="invisible"/>
+    
+    <LinearLayout
+        android:id="@+id/botonera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal"
+        android:layout_below="@id/ib_agregar">
+
+        <Button
+            android:id="@+id/aceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_ver"
+            android:text="@string/aceptar"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_ver"
+            android:text="@string/cancelar"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+    
+</RelativeLayout>
+</ScrollView>

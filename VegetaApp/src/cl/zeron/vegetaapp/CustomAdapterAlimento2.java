@@ -104,10 +104,13 @@ public class CustomAdapterAlimento2 extends ParseQueryAdapter<ParseObject>{
 			// Add and download the image
 			final ParseImageView alimentoImage = (ParseImageView) v.findViewById(R.id.icon_ali);
 			
+			
+			
 			ParseFile imageFile  = object.getParseFile("imagen");
 			if (imageFile != null) {
 				alimentoImage.setParseFile(imageFile);
 				alimentoImage.loadInBackground();
+				alimentoImage.setImageResource(R.drawable.ic_launcher3);
 			}
 	        
 			// Add the title view
@@ -127,7 +130,7 @@ public class CustomAdapterAlimento2 extends ParseQueryAdapter<ParseObject>{
 					bundle.putString("NOMBRE",object.getString("nombre"));
 					bundle.putString("IMAG", ruta);
 					bundle.putString("INFO",object.getString("descripcion"));
-					
+					bundle.putString("ID", object.getObjectId());
 					
 					Intent i = new Intent(act, AlimentoResultListActivity.class);
 					i.putExtras(bundle);

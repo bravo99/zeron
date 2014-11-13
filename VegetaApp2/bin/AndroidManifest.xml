@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cl.zeron.vegetaapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+    
+    <application
+        android:name="cl.zeron.vegetaapp.GlobalClass"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/CustomActionBarTheme">
+        <!-- android:theme="@style/AppTheme"
+        
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" -->
+        
+        
+        <meta-data android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+        
+        <activity
+           
+            android:name=".InitActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait"
+   			android:configChanges="orientation|keyboardHidden">
+        </activity>
+      	
+        <activity android:name="cl.zeron.vegetaapp.FormRecetaActivity"></activity> 
+        <activity android:name="cl.zeron.vegetaapp.ListAlimentoActivity"></activity>
+        <activity android:name="cl.zeron.vegetaapp.ListComentarioActivity"></activity>
+        <activity android:name="cl.zeron.vegetaapp.AlimentoResultListActivity"></activity> 
+        <activity android:name="cl.zeron.vegetaapp.ActivityNuevaReceta"></activity>
+        <activity android:name="cl.zeron.vegetaapp.AlimentoActivity"></activity>
+        <activity android:name=".EditarReceta"></activity>
+        <activity android:name="cl.zeron.vegetaapp.AlimentoEditActivity"></activity>
+        <activity
+	        android:name="cl.zeron.vegetaapp.RecetaResultListActivity"
+	        android:parentActivityName="cl.zeron.vegetaapp.MainActivity"
+	        android:uiOptions="splitActionBarWhenNarrow">
+            <meta-data 
+	            android:name="android.support.UI_OPTIONS"
+	            android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity 
+            android:name=".LocalActivity"
+            android:parentActivityName="cl.zeron.vegetaapp.MainActivity">
+            <meta-data 
+	            android:name="android.support.UI_OPTIONS"
+	            android:value="splitActionBarWhenNarrow" />
+        </activity>
+        
+        <activity android:name=".EditarLocal"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".RestaurantActivity"></activity> 
+        <activity android:name=".EditarRestaurant"></activity> 
+        
+        <activity
+	    android:name="com.parse.ui.ParseLoginActivity"
+	    android:label="@string/app_name"
+	    android:launchMode="singleTop"
+	    android:theme="@style/CustomActionBarTheme">
+		<meta-data
+                android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_ENABLED"
+                android:value="true"/>
+            <meta-data
+                android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_EMAIL_AS_USERNAME"
+                android:value="true"/>
+            <meta-data
+                android:name="com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_ENABLED"
+                android:value="true"/>
+            <meta-data
+                android:name="com.parse.ui.ParseLoginActivity.TWITTER_LOGIN_ENABLED"
+                android:value="false"/>
+            
+            <meta-data
+		        android:name="com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_PERMISSIONS"
+		        android:resource="@array/my_facebook_permissions"/>  
+		 	<meta-data
+		        android:name="com.parse.ui.ParseLoginActivity.APP_LOGO"
+		        android:resource="@drawable/logo_vegeta"/>
+            
+		</activity>
+		<activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"/>
+		<meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="729168253804672"/>
+        
+        <!-- actividad para q se abra como dialog  add this android:theme="@android:style/Theme.Dialog" -->
+        <meta-data
+    		android:name="com.google.android.maps.v2.API_KEY"
+    		android:value="AIzaSyCP5appFQqRAcnITN7twMSE8dIdxMerwRw"/> 
+        
+    </application>
+
+</manifest>

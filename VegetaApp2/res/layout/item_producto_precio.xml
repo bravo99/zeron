@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" >
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+	    <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="@string/app_name"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+	    
+	     
+	     <TextView
+	         android:id="@+id/id"
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:visibility="invisible"/>
+	     
+	     <ImageButton 
+	         android:id="@+id/ib_delete"
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:src="@drawable/ic_action_discard"
+	         android:layout_alignParentRight="true"
+	         android:background="@android:color/transparent"/>
+	     
+	     <TextView
+            android:id="@+id/textViewPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+             android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000000"
+            android:text="@string/app_name"
+            android:layout_toLeftOf="@id/ib_delete"
+            android:layout_centerVertical="true"
+             />
+	     <TextView
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:text="@string/signo_peso"
+	         android:layout_toLeftOf="@id/textViewPrecio"
+	         android:layout_centerVertical="true"/>
+	     
+	</RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#808080" />
+
+
+</LinearLayout>

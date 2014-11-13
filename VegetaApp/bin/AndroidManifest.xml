@@ -60,6 +60,7 @@
         <activity android:name="cl.zeron.vegetaapp.AlimentoResultListActivity"></activity> 
         <activity android:name="cl.zeron.vegetaapp.RecetaActivity"></activity>
         <activity android:name="cl.zeron.vegetaapp.AlimentoActivity"></activity>
+        <activity android:name="cl.zeron.vegetaapp.AlimentoEditActivity"></activity>
         
         <activity
 	        android:name="cl.zeron.vegetaapp.RecetaResultListActivity"

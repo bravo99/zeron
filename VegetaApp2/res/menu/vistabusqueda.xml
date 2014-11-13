@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cl.zeron.vegetaapp="http://schemas.android.com/apk/res-auto" >
+    
+	<item
+        android:id="@+id/menu3_buscar"
+        android:title="@string/menu_buscar"
+        android:icon="@drawable/ic_action_search"
+        cl.zeron.vegetaapp:showAsAction="ifRoom|collapseActionView"
+        cl.zeron.vegetaapp:actionViewClass="android.support.v7.widget.SearchView"/>
+	<item
+        android:id="@+id/menu3_add"
+        android:title="@string/menu_agregar"
+        android:icon="@drawable/ic_action_new"
+        cl.zeron.vegetaapp:showAsAction="always"/>
+    
+</menu>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/station_info_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+    
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cntn_icon_infowindow"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp" />
+    <LinearLayout 
+        android:id="@+id/ll_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/icon"
+        android:orientation="vertical">
+        
+        <TextView 
+	        android:id="@+id/tv_titulo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/vegLetra"
+	        android:textStyle="bold"
+	        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    	<TextView 
+	        android:id="@+id/tv_snnipet"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="17sp"
+	        android:textColor="@color/vegLetraEsp"
+	        android:layout_gravity="center_horizontal"/>
+        
+    </LinearLayout>
+    
+
+</RelativeLayout>

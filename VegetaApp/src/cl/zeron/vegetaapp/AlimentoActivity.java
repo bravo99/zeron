@@ -189,7 +189,7 @@ public class AlimentoActivity extends ActionBarActivity{
     				break;
     				
     			case Activity.RESULT_CANCELED:
-    				iv.setImageResource(R.drawable.ic_launcher);
+    				
     				break;
     		}
     		
@@ -210,7 +210,7 @@ public class AlimentoActivity extends ActionBarActivity{
 		 
 		    		} catch (FileNotFoundException e) {}
 				case Activity.RESULT_CANCELED:
-					iv.setImageResource(R.drawable.ic_launcher);
+					
     		}
     	}
     }
@@ -267,11 +267,7 @@ public class AlimentoActivity extends ActionBarActivity{
 		
 	}
 
-	protected void agregarImagen() {
-		
-		
-	}
-
+	
 	
 
 	@Override
